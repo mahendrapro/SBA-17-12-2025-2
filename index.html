@@ -4,10 +4,19 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sri Balaji Associates</title>
+
+    <!-- Tailwind CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&family=Oswald:wght@200;300;400;500;600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&family=Oswald:wght@200;300;400;500;600;700&family=Inter:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Tailwind Config -->
     <script>
       tailwind.config = {
         theme: {
@@ -18,16 +27,18 @@
               body: ['Inter', 'sans-serif'],
             },
             colors: {
-              gunmetal: '#0f172a', // slate-900
-              matte: '#020617', // slate-950
-              accent: '#38bdf8', // sky-400 (Updated to match SBA Blue Logo)
-              gold: '#fbbf24', // amber-400 (Secondary accent)
+              gunmetal: '#0f172a',
+              matte: '#020617',
+              accent: '#38bdf8',
+              gold: '#fbbf24',
               glass: 'rgba(255, 255, 255, 0.05)',
-            }
-          }
-        }
-      }
+            },
+          },
+        },
+      };
     </script>
+
+    <!-- Global Styles -->
     <style>
       html {
         scroll-behavior: smooth;
@@ -38,28 +49,25 @@
         color: #e2e8f0;
         overflow-x: hidden;
       }
-      /* Cross-browser scrollbar hiding */
       .no-scrollbar {
-        -ms-overflow-style: none;  /* IE and Edge */
-        scrollbar-width: none;  /* Firefox */
+        -ms-overflow-style: none;
+        scrollbar-width: none;
       }
       .no-scrollbar::-webkit-scrollbar {
-        display: none; /* Chrome, Safari and Opera */
+        display: none;
       }
       .text-stroke {
         -webkit-text-stroke: 1px rgba(255, 255, 255, 0.1);
         color: transparent;
       }
     </style>
-<body>
-  <div id="root"></div>
-  <script type="module" src="/index.tsx"></script>
-</body>
 
-<link rel="stylesheet" href="/index.css">
-</head>
+    <!-- App CSS -->
+    <link rel="stylesheet" href="/index.css" />
+  </head>
+
   <body>
     <div id="root"></div>
-  <script type="module" src="/index.tsx"></script>
-</body>
+    <script type="module" src="/index.tsx"></script>
+  </body>
 </html>
