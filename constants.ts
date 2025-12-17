@@ -26,67 +26,61 @@ export const COMPANY_IMAGES = {
 };
 
 // =======================================================
-// PROJECT IMAGE COLLECTIONS
+// PROJECT IMAGE COLLECTIONS (LONG FOLDER NAMES)
 // FIRST IMAGE = HERO IMAGE
 // =======================================================
 
-// Project 1: Berger Scrap Yard
+// 1. Berger Paints India Limited – Barrel Scrap Yard
 const IMAGES_PROJECT_1 = [
-  "/images/projects/berger-yard/hero.jpeg",
-  "/images/projects/berger-yard/1.jpeg",
-  "/images/projects/berger-yard/2.jpeg",
+  "/images/projects/Berger Paints India Limited- Barrel Scrap Yard/hero.jpeg",
+  "/images/projects/Berger Paints India Limited- Barrel Scrap Yard/1.jpeg",
+  "/images/projects/Berger Paints India Limited- Barrel Scrap Yard/2.jpeg",
 ];
 
-// Project 2: Berger STP
+// 2. Berger Paints India Limited – Scrap Yard Work
 const IMAGES_PROJECT_2 = [
-  "/images/projects/berger-stp/hero.jpeg",
-  "/images/projects/berger-stp/1.jpeg",
+  "/images/projects/Berger Paints India Limited- Scrap yard work/hero.jpeg",
+  "/images/projects/Berger Paints India Limited- Scrap yard work/1.jpeg",
 ];
 
-// Project 3: Rain Water Harvesting
+// 3. Berger Paints India limited – CSR Initiative Food Court
 const IMAGES_PROJECT_3 = [
-  "/images/projects/rain-water/hero.jpeg",
-  "/images/projects/rain-water/1.jpeg",
+  "/images/projects/Berger Paints India limited- CSR Initiative work - Food Court construction for Thumakunta Government High school/hero.jpeg",
+  "/images/projects/Berger Paints India limited- CSR Initiative work - Food Court construction for Thumakunta Government High school/1.jpeg",
 ];
 
-// Project 4: Workshop Sheds
+// 4. Berger RMS canopy extension work
 const IMAGES_PROJECT_4 = [
-  "/images/projects/workshop-sheds/hero.jpeg",
-  "/images/projects/workshop-sheds/1.jpeg",
+  "/images/projects/Berger RMS canopy extension work/hero.jpeg",
+  "/images/projects/Berger RMS canopy extension work/1.jpeg",
 ];
 
-// Project 5: Wipro R&D
+// 5. Sewage Treatment plant construction
 const IMAGES_PROJECT_5 = [
-  "/images/projects/wipro-rnd/hero.jpeg",
-  "/images/projects/wipro-rnd/1.jpeg",
-];
-
-// Project 6: Wipro Tank Shed
-const IMAGES_PROJECT_6 = [
-  "/images/projects/wipro-tank-shed/hero.jpeg",
-  "/images/projects/wipro-tank-shed/1.jpeg",
+  "/images/projects/Sewage Treatment plant construction/hero.jpeg",
+  "/images/projects/Sewage Treatment plant construction/1.jpeg",
 ];
 
 // =======================================================
-// HERO SLIDES (USES HERO IMAGES)
+// HERO SLIDES (TOP SLIDER)
 // =======================================================
 
 export const HERO_SLIDES = [
   IMAGES_PROJECT_1[0],
-  IMAGES_PROJECT_5[0],
   IMAGES_PROJECT_2[0],
-  IMAGES_PROJECT_6[0],
   IMAGES_PROJECT_3[0],
+  IMAGES_PROJECT_4[0],
+  IMAGES_PROJECT_5[0],
 ];
 
 // =======================================================
-// PROJECTS LIST
+// PROJECTS LIST (NO DUPLICATES)
 // =======================================================
 
 export const PROJECTS: Project[] = [
   {
     id: 1,
-    name: "Construction of Scrap and Barrel Yard at Berger Paints Limited",
+    name: "Berger Paints India Limited – Barrel Scrap Yard",
     value: "600 Lakhs",
     client: "Berger Paints",
     image: IMAGES_PROJECT_1[0],
@@ -94,7 +88,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 2,
-    name: "Construction of ECO STP at Berger Paints Limited",
+    name: "Berger Paints India Limited – Scrap Yard Work",
     value: "300 Lakhs",
     client: "Berger Paints",
     image: IMAGES_PROJECT_2[0],
@@ -102,56 +96,51 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 3,
-    name: "Construction of Rain Water Harvesting System at Berger Paints Limited",
-    value: "200 Lakhs",
+    name: "Berger Paints India Limited – CSR Initiative (Food Court Construction)",
+    value: "—",
     client: "Berger Paints",
     image: IMAGES_PROJECT_3[0],
     images: IMAGES_PROJECT_3,
   },
   {
     id: 4,
-    name: "Construction of Workshop Sheds at Berger Paints Limited",
-    value: "150 Lakhs",
+    name: "Berger RMS Canopy Extension Work",
+    value: "—",
     client: "Berger Paints",
     image: IMAGES_PROJECT_4[0],
     images: IMAGES_PROJECT_4,
   },
   {
     id: 5,
-    name: "Construction of R&D Development Center at WIPRO Enterprises Limited, Peenya",
-    value: "150 Lakhs",
-    client: "WIPRO",
+    name: "Sewage Treatment Plant Construction",
+    value: "—",
+    client: "Berger Paints",
     image: IMAGES_PROJECT_5[0],
     images: IMAGES_PROJECT_5,
   },
-  {
-    id: 6,
-    name: "Construction of Material Handling Tank Shed at WIPRO Enterprises Limited",
-    value: "100 Lakhs",
-    client: "WIPRO",
-    image: IMAGES_PROJECT_6[0],
-    images: IMAGES_PROJECT_6,
-  },
 
-  // Remaining projects (text-only)
-  { id: 7, name: "Construction of Govt Tool Room facility at Gauribidanur Ind. Estate", value: "1050 Lakhs", client: "Govt / NSL" },
-  { id: 8, name: "Up gradation of 35 slums in Hospet municipality under sublet of IVRCL", value: "660 Lakhs", client: "IVRCL / Municipality" },
-  { id: 9, name: "Up gradation of 13 Slums in Chitradurga Municipality under sublet of IVRCL", value: "330 Lakhs", client: "IVRCL / Municipality" },
-  { id: 10, name: "Construction of Railway lines with supply and laying of ballast", value: "155 Lakhs", client: "Railways" },
-  { id: 11, name: "Construction over head sub reservoir in Hindupur Constituency", value: "150 Lakhs", client: "Government" },
-  { id: 12, name: "Construction of Ghat Road for wind mills at Mundergi, Gadag District", value: "350 Lakhs", client: "Suzlon Infrastructure" },
-  { id: 13, name: "Construction of GHAT Road and platform for wind mill projects", value: "450 Lakhs", client: "Barooka Power Corp" },
-  { id: 14, name: "Up gradation of Canal No. 13 Badra Canal project at Shivamoga", value: "110 Lakhs", client: "IVRCL & GVPR" },
-  { id: 15, name: "Up graduation of canal 9C, 7C, 150C, 135C, Badra Canal project", value: "350 Lakhs", client: "IVRCL & GVPR" },
-  { id: 16, name: "Construction of over subhead reservoirs in SRI RAMA REDDY Drinking Water project", value: "100 Lakhs", client: "L&T" },
-  { id: 17, name: "Construction of Slabs for Furnace Buildings, Pump Houses for M.B. Smelters", value: "145 Lakhs", client: "M.B. Smelters" },
-  { id: 18, name: "Construction of Compound wall and Pump Houses for Berger", value: "145 Lakhs", client: "Berger Paints" },
-  { id: 19, name: "Construction of Facilities for British Paints at Hindupur", value: "140 Lakhs", client: "British Paints" },
-  { id: 20, name: "Construction of Canteen Buildings and Expansion Sheds for Wipro Infrastructure", value: "150 Lakhs", client: "Wipro" },
-  { id: 21, name: "Development of Layout and Construction of Roads in J.V at KIADB at Gauribidanur", value: "710 Lakhs", client: "KIADB" },
-  { id: 22, name: "Construction of Furnace at Tirupati Steels, Hindupur", value: "150 Lakhs", client: "Tirupati Steels" },
-  { id: 23, name: "Construction of State Highway from Yelburga to Cocoonor at Koppal Dt.", value: "1750 Lakhs", client: "State Highway" },
-  { id: 24, name: "Development of Layout and Construction of Roads in J.V at KIADB at Narasapur", value: "400 Lakhs", client: "KIADB" },
+  // ---------------------------------------------------
+  // REMAINING PROJECTS (TEXT ONLY)
+  // ---------------------------------------------------
+
+  { id: 6, name: "Construction of Govt Tool Room facility at Gauribidanur Ind. Estate", value: "1050 Lakhs", client: "Govt / NSL" },
+  { id: 7, name: "Up gradation of 35 slums in Hospet municipality under sublet of IVRCL", value: "660 Lakhs", client: "IVRCL / Municipality" },
+  { id: 8, name: "Up gradation of 13 Slums in Chitradurga Municipality under sublet of IVRCL", value: "330 Lakhs", client: "IVRCL / Municipality" },
+  { id: 9, name: "Construction of Railway lines with supply and laying of ballast", value: "155 Lakhs", client: "Railways" },
+  { id: 10, name: "Construction over head sub reservoir in Hindupur Constituency", value: "150 Lakhs", client: "Government" },
+  { id: 11, name: "Construction of Ghat Road for wind mills at Mundergi, Gadag District", value: "350 Lakhs", client: "Suzlon Infrastructure" },
+  { id: 12, name: "Construction of GHAT Road and platform for wind mill projects", value: "450 Lakhs", client: "Barooka Power Corp" },
+  { id: 13, name: "Up gradation of Canal No. 13 Badra Canal project at Shivamoga", value: "110 Lakhs", client: "IVRCL & GVPR" },
+  { id: 14, name: "Up graduation of canal 9C, 7C, 150C, 135C, Badra Canal project", value: "350 Lakhs", client: "IVRCL & GVPR" },
+  { id: 15, name: "Construction of over subhead reservoirs in SRI RAMA REDDY Drinking Water project", value: "100 Lakhs", client: "L&T" },
+  { id: 16, name: "Construction of Slabs for Furnace Buildings, Pump Houses for M.B. Smelters", value: "145 Lakhs", client: "M.B. Smelters" },
+  { id: 17, name: "Construction of Compound wall and Pump Houses for Berger", value: "145 Lakhs", client: "Berger Paints" },
+  { id: 18, name: "Construction of Facilities for British Paints at Hindupur", value: "140 Lakhs", client: "British Paints" },
+  { id: 19, name: "Construction of Canteen Buildings and Expansion Sheds for Wipro Infrastructure", value: "150 Lakhs", client: "Wipro" },
+  { id: 20, name: "Development of Layout and Construction of Roads in J.V at KIADB at Gauribidanur", value: "710 Lakhs", client: "KIADB" },
+  { id: 21, name: "Construction of Furnace at Tirupati Steels, Hindupur", value: "150 Lakhs", client: "Tirupati Steels" },
+  { id: 22, name: "Construction of State Highway from Yelburga to Cocoonor at Koppal Dt.", value: "1750 Lakhs", client: "State Highway" },
+  { id: 23, name: "Development of Layout and Construction of Roads in J.V at KIADB at Narasapur", value: "400 Lakhs", client: "KIADB" },
 ];
 
 // =======================================================
