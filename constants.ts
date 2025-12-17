@@ -21,9 +21,10 @@ export const COMPANY_DETAILS = {
 
 export const COMPANY_IMAGES = {
   logo: "/images/logo.png",
-  about: "/images/about-us.jpg",
+about: "/images/about-us.jpeg",
   projectPlaceholder: "/images/project-placeholder.jpg",
 };
+
 
 // =======================================================
 // PROJECT IMAGE COLLECTIONS (LONG FOLDER NAMES)
