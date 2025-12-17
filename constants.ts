@@ -68,7 +68,7 @@ const IMAGES_PROJECT_6 = [
 ];
 
 // =======================================================
-// HERO SLIDES (AUTO USES HERO IMAGES)
+// HERO SLIDES (USES HERO IMAGES)
 // =======================================================
 
 export const HERO_SLIDES = [
@@ -133,7 +133,7 @@ export const PROJECTS: Project[] = [
     images: IMAGES_PROJECT_6,
   },
 
-  // Other projects (text-only for now)
+  // Remaining projects (text-only)
   { id: 7, name: "Construction of Govt Tool Room facility at Gauribidanur Ind. Estate", value: "1050 Lakhs", client: "Govt / NSL" },
   { id: 8, name: "Up gradation of 35 slums in Hospet municipality under sublet of IVRCL", value: "660 Lakhs", client: "IVRCL / Municipality" },
   { id: 9, name: "Up gradation of 13 Slums in Chitradurga Municipality under sublet of IVRCL", value: "330 Lakhs", client: "IVRCL / Municipality" },
