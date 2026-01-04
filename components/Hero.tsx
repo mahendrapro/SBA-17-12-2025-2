@@ -6,12 +6,13 @@ import { HERO_SLIDES } from "../constants";
 const Hero: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  // Auto slide every 5 seconds
+  // Auto-slide every 5 seconds
   useEffect(() => {
-    const timer = setInterval(() => {
+    const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % HERO_SLIDES.length);
     }, 5000);
-    return () => clearInterval(timer);
+
+    return () => clearInterval(interval);
   }, []);
 
   const nextSlide = () => {
@@ -40,7 +41,7 @@ const Hero: React.FC = () => {
       id="home"
       className="relative min-h-[100dvh] w-full flex items-center justify-center bg-matte overflow-hidden pt-20 md:pt-0"
     >
-      {/* Background */}
+      {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <AnimatePresence mode="wait">
           <motion.img
@@ -60,7 +61,7 @@ const Hero: React.FC = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-matte/80 via-transparent to-matte z-10" />
       </div>
 
-      {/* Content */}
+      {/* Hero Content */}
       <div className="relative z-20 max-w-5xl mx-auto px-6 text-center">
         <AnimatePresence mode="wait">
           <motion.div
@@ -103,7 +104,7 @@ const Hero: React.FC = () => {
         </AnimatePresence>
       </div>
 
-      {/* Controls */}
+      {/* Slider Controls */}
       <div className="absolute bottom-10 right-10 z-20 flex gap-3">
         <button
           onClick={prevSlide}
@@ -119,4 +120,12 @@ const Hero: React.FC = () => {
         </button>
       </div>
 
-      {/* Scroll indica*
+      {/* Scroll Indicator */}
+      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 animate-bounce hidden md:block">
+        <ArrowDown className="text-white/50 w-6 h-6" />
+      </div>
+    </div>
+  );
+};
+
+export default Hero;
