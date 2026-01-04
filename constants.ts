@@ -11,9 +11,11 @@ export const COMPANY_DETAILS = {
   email: "sribalajiassociates256@gmail.com",
   phone: "9963462203",
   founded: 2011,
-  founder: "Mr. C. Krishna Kumar",
+  founderAndManagingDirector: "Mr. C. Krishna Kumar",
   turnover: "20 Crore+",
 };
+
+
 
 // =======================================================
 // COMPANY IMAGES
