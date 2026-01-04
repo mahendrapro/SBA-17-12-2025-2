@@ -4,16 +4,18 @@ import { motion, AnimatePresence } from "framer-motion";
 import { HERO_SLIDES } from "../constants";
 
 const SLIDE_INTERVAL = 5000;
+const ANIMATION_DURATION = 1200; // must match motion transition
 
 const Hero: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(false);
   const intervalRef = useRef<number | null>(null);
 
-  // ---------- Helpers ----------
+  // ---------- Auto slide ----------
   const startAutoSlide = () => {
     stopAutoSlide();
     intervalRef.current = window.setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % HERO_SLIDES.length);
+      triggerNext();
     }, SLIDE_INTERVAL);
   };
 
@@ -24,25 +26,34 @@ const Hero: React.FC = () => {
     }
   };
 
-  // ---------- Auto slide ----------
   useEffect(() => {
     startAutoSlide();
     return () => stopAutoSlide();
   }, []);
 
-  // ---------- Manual controls ----------
-  const nextSlide = () => {
-    stopAutoSlide();
+  // ---------- Slide handlers ----------
+  const triggerNext = () => {
+    if (isAnimating) return;
+    setIsAnimating(true);
     setCurrentSlide((prev) => (prev + 1) % HERO_SLIDES.length);
-    startAutoSlide();
+    resetAfterAnimation();
   };
 
-  const prevSlide = () => {
-    stopAutoSlide();
+  const triggerPrev = () => {
+    if (isAnimating) return;
+    setIsAnimating(true);
     setCurrentSlide(
       (prev) => (prev - 1 + HERO_SLIDES.length) % HERO_SLIDES.length
     );
-    startAutoSlide();
+    resetAfterAnimation();
+  };
+
+  const resetAfterAnimation = () => {
+    stopAutoSlide();
+    setTimeout(() => {
+      setIsAnimating(false);
+      startAutoSlide();
+    }, ANIMATION_DURATION);
   };
 
   const slide = HERO_SLIDES[currentSlide];
@@ -104,14 +115,16 @@ const Hero: React.FC = () => {
       {/* Controls */}
       <div className="absolute bottom-12 left-1/2 -translate-x-1/2 z-30 flex gap-6">
         <button
-          onClick={prevSlide}
-          className="w-12 h-12 flex items-center justify-center border border-white/30 text-white hover:bg-white hover:text-black transition"
+          onClick={triggerPrev}
+          disabled={isAnimating}
+          className="w-12 h-12 flex items-center justify-center border border-white/30 text-white hover:bg-white hover:text-black transition disabled:opacity-40"
         >
           <ArrowLeft size={20} />
         </button>
         <button
-          onClick={nextSlide}
-          className="w-12 h-12 flex items-center justify-center border border-white/30 text-white hover:bg-white hover:text-black transition"
+          onClick={triggerNext}
+          disabled={isAnimating}
+          className="w-12 h-12 flex items-center justify-center border border-white/30 text-white hover:bg-white hover:text-black transition disabled:opacity-40"
         >
           <ArrowRight size={20} />
         </button>
