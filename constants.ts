@@ -242,6 +242,21 @@ export const PROJECTS: Project[] = [
     value: "400 Lakhs",
     client: "KIADB (Government of Karnataka)",
   },
+  {
+  id: 23,
+  name: "Construction of Manufacturing Unit – British Paints – Gollapuram Industrial Area, Hindupur, Andhra Pradesh",
+  value: "—",
+  client: "British Paints",
+},
+{
+  id: 24,
+  name: "Sri Sathya Sai Park Development Work – Supported by Joyalukkas Foundation – Puttaparthi, Andhra Pradesh",
+  value: "—",
+  client: "Joyalukkas Foundation",
+  image: IMAGES_PROJECT_5[0],
+  images: IMAGES_PROJECT_5,
+},
+
 ];
 
 
