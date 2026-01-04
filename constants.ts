@@ -67,12 +67,38 @@ const IMAGES_PROJECT_5 = [
 // =======================================================
 
 export const HERO_SLIDES = [
-  IMAGES_PROJECT_1[0],
-  IMAGES_PROJECT_2[0],
-  IMAGES_PROJECT_3[0],
-  IMAGES_PROJECT_4[0],
-  IMAGES_PROJECT_5[0],
+  {
+    image: IMAGES_PROJECT_1[0],
+    title: "BUILDING THE FUTURE",
+    subtitle:
+      "Delivering industrial and infrastructure projects with precision, safety, and quality since 2011.",
+  },
+  {
+    image: IMAGES_PROJECT_2[0],
+    title: "ENGINEERING EXCELLENCE",
+    subtitle:
+      "Trusted partner for large-scale industrial construction and execution excellence.",
+  },
+  {
+    image: IMAGES_PROJECT_3[0],
+    title: "COMMUNITY INFRASTRUCTURE",
+    subtitle:
+      "Supporting education and public facilities through responsible construction initiatives.",
+  },
+  {
+    image: IMAGES_PROJECT_4[0],
+    title: "INDUSTRIAL EXPANSION",
+    subtitle:
+      "Executing complex industrial upgrades and extensions with efficiency and care.",
+  },
+  {
+    image: IMAGES_PROJECT_5[0],
+    title: "SUSTAINABLE UTILITIES",
+    subtitle:
+      "Building reliable sewage and water treatment infrastructure for a cleaner future.",
+  },
 ];
+
 
 // =======================================================
 // PROJECTS LIST (NO DUPLICATES)
