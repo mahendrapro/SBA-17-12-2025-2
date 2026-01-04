@@ -1,56 +1,74 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { ArrowLeft, ArrowRight, ArrowDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { HERO_SLIDES } from "../constants";
 
+const SLIDE_INTERVAL = 5000;
+
 const Hero: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const intervalRef = useRef<number | null>(null);
 
-  // Auto slide every 5 seconds
-  useEffect(() => {
-    const interval = setInterval(() => {
+  // ---------- Helpers ----------
+  const startAutoSlide = () => {
+    stopAutoSlide();
+    intervalRef.current = window.setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % HERO_SLIDES.length);
-    }, 5000);
+    }, SLIDE_INTERVAL);
+  };
 
-    return () => clearInterval(interval);
+  const stopAutoSlide = () => {
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+      intervalRef.current = null;
+    }
+  };
+
+  // ---------- Auto slide ----------
+  useEffect(() => {
+    startAutoSlide();
+    return () => stopAutoSlide();
   }, []);
 
+  // ---------- Manual controls ----------
   const nextSlide = () => {
+    stopAutoSlide();
     setCurrentSlide((prev) => (prev + 1) % HERO_SLIDES.length);
+    startAutoSlide();
   };
 
   const prevSlide = () => {
+    stopAutoSlide();
     setCurrentSlide(
       (prev) => (prev - 1 + HERO_SLIDES.length) % HERO_SLIDES.length
     );
+    startAutoSlide();
   };
+
+  const slide = HERO_SLIDES[currentSlide];
 
   return (
     <section
       id="home"
-      className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-matte"
+      className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-black"
     >
-      {/* Background slider */}
+      {/* Background */}
       <div className="absolute inset-0 z-0">
-       <AnimatePresence mode="wait">
-  <motion.img
-    key={currentSlide}
-    src={HERO_SLIDES[currentSlide].image}
-    alt={HERO_SLIDES[currentSlide].title}
-    loading="eager"
-    decoding="async"
-    className="absolute inset-0 w-full h-full object-cover"
-    initial={{ opacity: 0, scale: 1.1 }}
-    animate={{ opacity: 1, scale: 1 }}
-    exit={{ opacity: 0 }}
-    transition={{ duration: 1.2, ease: "easeInOut" }}
-  />
-</AnimatePresence>
+        <AnimatePresence mode="wait">
+          <motion.img
+            key={slide.image}
+            src={slide.image}
+            alt={slide.title}
+            className="absolute inset-0 w-full h-full object-cover"
+            initial={{ opacity: 0, scale: 1.08 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1.2, ease: "easeInOut" }}
+          />
+        </AnimatePresence>
 
-
-        {/* Overlays */}
-        <div className="absolute inset-0 bg-black/40 z-10" />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black z-10" />
+        <div className="absolute inset-0 bg-black/50 z-10" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-transparent to-black z-10" />
       </div>
 
       {/* Content */}
@@ -59,14 +77,13 @@ const Hero: React.FC = () => {
           EST. 2011 • ANDHRA PRADESH
         </span>
 
-       <h1 className="text-4xl md:text-7xl font-display font-bold text-white uppercase mb-6">
-  {HERO_SLIDES[currentSlide].title}
-</h1>
+        <h1 className="text-4xl md:text-7xl font-display font-bold text-white uppercase mb-6">
+          {slide.title}
+        </h1>
 
-<p className="text-slate-300 max-w-2xl mx-auto mb-10">
-  {HERO_SLIDES[currentSlide].subtitle}
-</p>
-
+        <p className="text-slate-300 max-w-2xl mx-auto mb-10">
+          {slide.subtitle}
+        </p>
 
         <div className="flex justify-center gap-6">
           <a
@@ -84,7 +101,7 @@ const Hero: React.FC = () => {
         </div>
       </div>
 
-      {/* Prev / Next controls (centered) */}
+      {/* Controls */}
       <div className="absolute bottom-12 left-1/2 -translate-x-1/2 z-30 flex gap-6">
         <button
           onClick={prevSlide}
