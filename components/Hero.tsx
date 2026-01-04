@@ -32,20 +32,21 @@ const Hero: React.FC = () => {
     >
       {/* Background slider */}
       <div className="absolute inset-0 z-0">
-        <AnimatePresence mode="wait">
-          <motion.img
-            key={currentSlide}
-            src={HERO_SLIDES[currentSlide]}
-            alt="Hero Slide"
-            loading="eager"
-            decoding="async"
-            className="absolute inset-0 w-full h-full object-cover"
-            initial={{ opacity: 0, scale: 1.1 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 1.2, ease: "easeInOut" }}
-          />
-        </AnimatePresence>
+       <AnimatePresence mode="wait">
+  <motion.img
+    key={currentSlide}
+    src={HERO_SLIDES[currentSlide].image}
+    alt={HERO_SLIDES[currentSlide].title}
+    loading="eager"
+    decoding="async"
+    className="absolute inset-0 w-full h-full object-cover"
+    initial={{ opacity: 0, scale: 1.1 }}
+    animate={{ opacity: 1, scale: 1 }}
+    exit={{ opacity: 0 }}
+    transition={{ duration: 1.2, ease: "easeInOut" }}
+  />
+</AnimatePresence>
+
 
         {/* Overlays */}
         <div className="absolute inset-0 bg-black/40 z-10" />
@@ -58,13 +59,14 @@ const Hero: React.FC = () => {
           EST. 2011 • ANDHRA PRADESH
         </span>
 
-        <h1 className="text-4xl md:text-7xl font-display font-bold text-white uppercase mb-6">
-          Engineering <br /> Excellence
-        </h1>
+       <h1 className="text-4xl md:text-7xl font-display font-bold text-white uppercase mb-6">
+  {HERO_SLIDES[currentSlide].title}
+</h1>
 
-        <p className="text-slate-300 max-w-2xl mx-auto mb-10">
-          Trusted partner for large-scale industrial and infrastructure projects.
-        </p>
+<p className="text-slate-300 max-w-2xl mx-auto mb-10">
+  {HERO_SLIDES[currentSlide].subtitle}
+</p>
+
 
         <div className="flex justify-center gap-6">
           <a
