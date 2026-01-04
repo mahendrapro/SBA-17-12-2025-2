@@ -37,6 +37,7 @@ const IMAGES_PROJECT_1 = [
   "/images/projects/berger-barrel-scrap-yard/2.jpg",
 ];
 
+
 // 2. Berger – CSR Food Court
 const IMAGES_PROJECT_2 = [
   "/images/projects/berger-csr-food-court/hero.jpg",
@@ -49,11 +50,13 @@ const IMAGES_PROJECT_3 = [
   "/images/projects/berger-rms-canopy/1.jpg",
 ];
 
+
 // 4. Sewage Treatment Plant
 const IMAGES_PROJECT_4 = [
   "/images/projects/sewage-treatment-plant/hero.jpg",
   "/images/projects/sewage-treatment-plant/1.jpg",
 ];
+
 
 
 // =======================================================
