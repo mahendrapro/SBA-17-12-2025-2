@@ -25,42 +25,36 @@ about: "/images/about-us.jpeg",
   projectPlaceholder: "/images/project-placeholder.jpg",
 };
 
-
 // =======================================================
-// PROJECT IMAGE COLLECTIONS (LONG FOLDER NAMES)
+// PROJECT IMAGE COLLECTIONS (SEO SAFE FOLDERS)
 // FIRST IMAGE = HERO IMAGE
 // =======================================================
 
-// 1. Berger Paints India Limited – Barrel Scrap Yard
+// 1. Berger – Barrel Scrap Yard
 const IMAGES_PROJECT_1 = [
-  "/images/projects/Berger Paints India Limited- Barrel Scrap Yard/hero.jpeg",
-  "/images/projects/Berger Paints India Limited- Barrel Scrap Yard/1.jpeg",
-  "/images/projects/Berger Paints India Limited- Barrel Scrap Yard/2.jpeg",
+  "/images/projects/berger-barrel-scrap-yard/hero.jpg",
+  "/images/projects/berger-barrel-scrap-yard/1.jpg",
+  "/images/projects/berger-barrel-scrap-yard/2.jpg",
 ];
 
-// 2. Berger Paints India Limited – Scrap Yard Work
+// 2. Berger – CSR Food Court
 const IMAGES_PROJECT_2 = [
-  "/images/projects/Berger Paints India Limited- Scrap yard work/hero.jpeg",
-  "/images/projects/Berger Paints India Limited- Scrap yard work/1.jpeg",
+  "/images/projects/berger-csr-food-court/hero.jpg",
+  "/images/projects/berger-csr-food-court/1.jpg",
 ];
 
-// 3. Berger Paints India limited – CSR Initiative Food Court
+// 3. Berger – RMS Canopy Extension
 const IMAGES_PROJECT_3 = [
-  "/images/projects/Berger Paints India limited- CSR Initiative work - Food Court construction for Thumakunta Government High school/hero.jpeg",
-  "/images/projects/Berger Paints India limited- CSR Initiative work - Food Court construction for Thumakunta Government High school/1.jpeg",
+  "/images/projects/berger-rms-canopy/hero.jpg",
+  "/images/projects/berger-rms-canopy/1.jpg",
 ];
 
-// 4. Berger RMS canopy extension work
+// 4. Sewage Treatment Plant
 const IMAGES_PROJECT_4 = [
-  "/images/projects/Berger RMS canopy extension work/hero.jpeg",
-  "/images/projects/Berger RMS canopy extension work/1.jpeg",
+  "/images/projects/sewage-treatment-plant/hero.jpg",
+  "/images/projects/sewage-treatment-plant/1.jpg",
 ];
 
-// 5. Sewage Treatment plant construction
-const IMAGES_PROJECT_5 = [
-  "/images/projects/Sewage Treatment plant construction/hero.jpeg",
-  "/images/projects/Sewage Treatment plant construction/1.jpeg",
-];
 
 // =======================================================
 // HERO SLIDES (TOP SLIDER)
@@ -71,33 +65,28 @@ export const HERO_SLIDES = [
     image: IMAGES_PROJECT_1[0],
     title: "BUILDING THE FUTURE",
     subtitle:
-      "Delivering industrial and infrastructure projects with precision, safety, and quality since 2011.",
+      "Delivering industrial and infrastructure projects with precision since 2011.",
   },
   {
     image: IMAGES_PROJECT_2[0],
-    title: "ENGINEERING EXCELLENCE",
+    title: "COMMUNITY INFRASTRUCTURE",
     subtitle:
-      "Trusted partner for large-scale industrial construction and execution excellence.",
+      "Supporting education and public facilities through CSR construction initiatives.",
   },
   {
     image: IMAGES_PROJECT_3[0],
-    title: "COMMUNITY INFRASTRUCTURE",
+    title: "INDUSTRIAL EXPANSION",
     subtitle:
-      "Supporting education and public facilities through responsible construction initiatives.",
+      "Executing complex industrial upgrades with safety and efficiency.",
   },
   {
     image: IMAGES_PROJECT_4[0],
-    title: "INDUSTRIAL EXPANSION",
-    subtitle:
-      "Executing complex industrial upgrades and extensions with efficiency and care.",
-  },
-  {
-    image: IMAGES_PROJECT_5[0],
     title: "SUSTAINABLE UTILITIES",
     subtitle:
-      "Building reliable sewage and water treatment infrastructure for a cleaner future.",
+      "Building reliable sewage and water treatment infrastructure.",
   },
 ];
+
 
 
 // =======================================================
@@ -106,45 +95,38 @@ export const HERO_SLIDES = [
 
 export const PROJECTS: Project[] = [
   {
-    id: 1,
-    name: "Berger Paints India Limited – Barrel Scrap Yard",
-    value: "600 Lakhs",
-    client: "Berger Paints",
-    image: IMAGES_PROJECT_1[0],
-    images: IMAGES_PROJECT_1,
-  },
-  {
-    id: 2,
-    name: "Berger Paints India Limited – Scrap Yard Work",
-    value: "300 Lakhs",
-    client: "Berger Paints",
-    image: IMAGES_PROJECT_2[0],
-    images: IMAGES_PROJECT_2,
-  },
-  {
-    id: 3,
-    name: "Berger Paints India Limited – CSR Initiative (Food Court Construction)",
-    value: "—",
-    client: "Berger Paints",
-    image: IMAGES_PROJECT_3[0],
-    images: IMAGES_PROJECT_3,
-  },
-  {
-    id: 4,
-    name: "Berger RMS Canopy Extension Work",
-    value: "—",
-    client: "Berger Paints",
-    image: IMAGES_PROJECT_4[0],
-    images: IMAGES_PROJECT_4,
-  },
-  {
-    id: 5,
-    name: "Sewage Treatment Plant Construction",
-    value: "—",
-    client: "Berger Paints",
-    image: IMAGES_PROJECT_5[0],
-    images: IMAGES_PROJECT_5,
-  },
+  id: 1,
+  name: "Berger Paints India Limited – Barrel Scrap Yard",
+  value: "600 Lakhs",
+  client: "Berger Paints",
+  image: IMAGES_PROJECT_1[0],
+  images: IMAGES_PROJECT_1,
+},
+{
+  id: 2,
+  name: "Berger Paints India Limited – CSR Food Court",
+  value: "—",
+  client: "Berger Paints",
+  image: IMAGES_PROJECT_2[0],
+  images: IMAGES_PROJECT_2,
+},
+{
+  id: 3,
+  name: "Berger RMS Canopy Extension Work",
+  value: "—",
+  client: "Berger Paints",
+  image: IMAGES_PROJECT_3[0],
+  images: IMAGES_PROJECT_3,
+},
+{
+  id: 4,
+  name: "Sewage Treatment Plant Construction",
+  value: "—",
+  client: "Government",
+  image: IMAGES_PROJECT_4[0],
+  images: IMAGES_PROJECT_4,
+},
+
 
   // ---------------------------------------------------
   // REMAINING PROJECTS (TEXT ONLY)
