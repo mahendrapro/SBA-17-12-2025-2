@@ -58,6 +58,17 @@ const IMAGES_PROJECT_4 = [
   "/images/projects/sewage-treatment-plant/hero.jpg",
   "/images/projects/sewage-treatment-plant/1.jpg",
 ];
+// 5. Sri Sathya Sai Park – CSR Project
+const IMAGES_PROJECT_5 = [
+  "/images/projects/sri-sathya-sai-park-work-supported-by-joyalukkas-foundation-at-puttaparthi/hero.jpg",
+  "/images/projects/sri-sathya-sai-park-work-supported-by-joyalukkas-foundation-at-puttaparthi/1.jpg",
+  "/images/projects/sri-sathya-sai-park-work-supported-by-joyalukkas-foundation-at-puttaparthi/2.jpg",
+  "/images/projects/sri-sathya-sai-park-work-supported-by-joyalukkas-foundation-at-puttaparthi/3.jpg",
+  "/images/projects/sri-sathya-sai-park-work-supported-by-joyalukkas-foundation-at-puttaparthi/4.jpg",
+  "/images/projects/sri-sathya-sai-park-work-supported-by-joyalukkas-foundation-at-puttaparthi/5.jpg",
+  "/images/projects/sri-sathya-sai-park-work-supported-by-joyalukkas-foundation-at-puttaparthi/6.jpg",
+  "/images/projects/sri-sathya-sai-park-work-supported-by-joyalukkas-foundation-at-puttaparthi/7.jpg",
+];
 
 
 
