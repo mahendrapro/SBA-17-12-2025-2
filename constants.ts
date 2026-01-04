@@ -100,62 +100,150 @@ export const HERO_SLIDES = [
 
 export const PROJECTS: Project[] = [
   {
-  id: 1,
-  name: "Berger Paints India Limited – Barrel Scrap Yard",
-  value: "600 Lakhs",
-  client: "Berger Paints",
-  image: IMAGES_PROJECT_1[0],
-  images: IMAGES_PROJECT_1,
-},
-{
-  id: 2,
-  name: "Berger Paints India Limited – CSR Food Court",
-  value: "—",
-  client: "Berger Paints",
-  image: IMAGES_PROJECT_2[0],
-  images: IMAGES_PROJECT_2,
-},
-{
-  id: 3,
-  name: "Berger RMS Canopy Extension Work",
-  value: "—",
-  client: "Berger Paints",
-  image: IMAGES_PROJECT_3[0],
-  images: IMAGES_PROJECT_3,
-},
-{
-  id: 4,
-  name: "Sewage Treatment Plant Construction",
-  value: "—",
-  client: "Government",
-  image: IMAGES_PROJECT_4[0],
-  images: IMAGES_PROJECT_4,
-},
+    id: 1,
+    name: "Berger Paints India Ltd – Barrel Scrap Yard Construction – Hindupur, Andhra Pradesh",
+    value: "600 Lakhs",
+    client: "Berger Paints India Limited",
+    image: IMAGES_PROJECT_1[0],
+    images: IMAGES_PROJECT_1,
+  },
+  {
+    id: 2,
+    name: "Berger Paints India Ltd – CSR Food Court Construction – Thumakunta, Andhra Pradesh",
+    value: "—",
+    client: "Berger Paints India Limited",
+    image: IMAGES_PROJECT_2[0],
+    images: IMAGES_PROJECT_2,
+  },
+  {
+    id: 3,
+    name: "Berger Paints India Ltd – RMS Canopy Extension Work – Hindupur, Andhra Pradesh",
+    value: "—",
+    client: "Berger Paints India Limited",
+    image: IMAGES_PROJECT_3[0],
+    images: IMAGES_PROJECT_3,
+  },
+  {
+    id: 4,
+    name: "Sewage Treatment Plant Construction – Hindupur, Andhra Pradesh",
+    value: "—",
+    client: "Government of Andhra Pradesh",
+    image: IMAGES_PROJECT_4[0],
+    images: IMAGES_PROJECT_4,
+  },
 
+  // ---------------- TEXT PROJECTS ----------------
 
-  // ---------------------------------------------------
-  // REMAINING PROJECTS (TEXT ONLY)
-  // ---------------------------------------------------
-
-  { id: 6, name: "Construction of Govt Tool Room facility at Gauribidanur Ind. Estate", value: "1050 Lakhs", client: "Govt / NSL" },
-  { id: 7, name: "Up gradation of 35 slums in Hospet municipality under sublet of IVRCL", value: "660 Lakhs", client: "IVRCL / Municipality" },
-  { id: 8, name: "Up gradation of 13 Slums in Chitradurga Municipality under sublet of IVRCL", value: "330 Lakhs", client: "IVRCL / Municipality" },
-  { id: 9, name: "Construction of Railway lines with supply and laying of ballast", value: "155 Lakhs", client: "Railways" },
-  { id: 10, name: "Construction over head sub reservoir in Hindupur Constituency", value: "150 Lakhs", client: "Government" },
-  { id: 11, name: "Construction of Ghat Road for wind mills at Mundergi, Gadag District", value: "350 Lakhs", client: "Suzlon Infrastructure" },
-  { id: 12, name: "Construction of GHAT Road and platform for wind mill projects", value: "450 Lakhs", client: "Barooka Power Corp" },
-  { id: 13, name: "Up gradation of Canal No. 13 Badra Canal project at Shivamoga", value: "110 Lakhs", client: "IVRCL & GVPR" },
-  { id: 14, name: "Up graduation of canal 9C, 7C, 150C, 135C, Badra Canal project", value: "350 Lakhs", client: "IVRCL & GVPR" },
-  { id: 15, name: "Construction of over subhead reservoirs in SRI RAMA REDDY Drinking Water project", value: "100 Lakhs", client: "L&T" },
-  { id: 16, name: "Construction of Slabs for Furnace Buildings, Pump Houses for M.B. Smelters", value: "145 Lakhs", client: "M.B. Smelters" },
-  { id: 17, name: "Construction of Compound wall and Pump Houses for Berger", value: "145 Lakhs", client: "Berger Paints" },
-  { id: 18, name: "Construction of Facilities for British Paints at Hindupur", value: "140 Lakhs", client: "British Paints" },
-  { id: 19, name: "Construction of Canteen Buildings and Expansion Sheds for Wipro Infrastructure", value: "150 Lakhs", client: "Wipro" },
-  { id: 20, name: "Development of Layout and Construction of Roads in J.V at KIADB at Gauribidanur", value: "710 Lakhs", client: "KIADB" },
-  { id: 21, name: "Construction of Furnace at Tirupati Steels, Hindupur", value: "150 Lakhs", client: "Tirupati Steels" },
-  { id: 22, name: "Construction of State Highway from Yelburga to Cocoonor at Koppal Dt.", value: "1750 Lakhs", client: "State Highway" },
-  { id: 23, name: "Development of Layout and Construction of Roads in J.V at KIADB at Narasapur", value: "400 Lakhs", client: "KIADB" },
+  {
+    id: 5,
+    name: "Government Tool Room Facility Construction – Gauribidanur Industrial Estate, Karnataka",
+    value: "1050 Lakhs",
+    client: "Government of Karnataka / NSL",
+  },
+  {
+    id: 6,
+    name: "Upgradation of 35 Slums – Hospet Municipality, Karnataka",
+    value: "660 Lakhs",
+    client: "IVRCL / Government of Karnataka",
+  },
+  {
+    id: 7,
+    name: "Upgradation of 13 Slums – Chitradurga Municipality, Karnataka",
+    value: "330 Lakhs",
+    client: "IVRCL / Government of Karnataka",
+  },
+  {
+    id: 8,
+    name: "Railway Track Construction with Ballast Supply & Laying – Karnataka",
+    value: "155 Lakhs",
+    client: "Indian Railways (Government of India)",
+  },
+  {
+    id: 9,
+    name: "Overhead Sub-Reservoir Construction – Hindupur Constituency, Andhra Pradesh",
+    value: "150 Lakhs",
+    client: "Government of Andhra Pradesh",
+  },
+  {
+    id: 10,
+    name: "Ghat Road Construction for Wind Mills – Mundergi, Gadag District, Karnataka",
+    value: "350 Lakhs",
+    client: "Suzlon Infrastructure Limited",
+  },
+  {
+    id: 11,
+    name: "Ghat Road & Platform Construction for Wind Mill Projects – Karnataka",
+    value: "450 Lakhs",
+    client: "Barooka Power Corporation",
+  },
+  {
+    id: 12,
+    name: "Canal No.13 Upgradation – Bhadra Canal Project – Shivamoga, Karnataka",
+    value: "110 Lakhs",
+    client: "IVRCL & GVPR",
+  },
+  {
+    id: 13,
+    name: "Upgradation of Canals 9C, 7C, 150C & 135C – Bhadra Canal Project, Karnataka",
+    value: "350 Lakhs",
+    client: "IVRCL & GVPR",
+  },
+  {
+    id: 14,
+    name: "Overhead Reservoir Construction – Sri Rama Reddy Drinking Water Project, Andhra Pradesh",
+    value: "100 Lakhs",
+    client: "Larsen & Toubro (L&T)",
+  },
+  {
+    id: 15,
+    name: "Furnace Building Slabs & Pump Houses Construction – Hindupur, Andhra Pradesh",
+    value: "145 Lakhs",
+    client: "M.B. Smelters",
+  },
+  {
+    id: 16,
+    name: "Compound Wall & Pump House Construction – Berger Paints – Hindupur, Andhra Pradesh",
+    value: "145 Lakhs",
+    client: "Berger Paints India Limited",
+  },
+  {
+    id: 17,
+    name: "Industrial Facility Construction – British Paints – Hindupur, Andhra Pradesh",
+    value: "140 Lakhs",
+    client: "British Paints",
+  },
+  {
+    id: 18,
+    name: "Canteen Building & Expansion Sheds – Wipro Infrastructure",
+    value: "150 Lakhs",
+    client: "Wipro Enterprises Limited",
+  },
+  {
+    id: 19,
+    name: "Road & Layout Development – KIADB JV Project – Gauribidanur, Karnataka",
+    value: "710 Lakhs",
+    client: "KIADB (Government of Karnataka)",
+  },
+  {
+    id: 20,
+    name: "Industrial Furnace Construction – Tirupati Steels – Hindupur, Andhra Pradesh",
+    value: "150 Lakhs",
+    client: "Tirupati Steels",
+  },
+  {
+    id: 21,
+    name: "State Highway Construction – Yelburga to Cocoonor – Koppal District, Karnataka",
+    value: "1750 Lakhs",
+    client: "Government of Karnataka",
+  },
+  {
+    id: 22,
+    name: "Road & Layout Development – KIADB JV Project – Narasapur, Karnataka",
+    value: "400 Lakhs",
+    client: "KIADB (Government of Karnataka)",
+  },
 ];
+
 
 // =======================================================
 // VISION & MISSION
