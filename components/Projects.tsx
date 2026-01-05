@@ -1,171 +1,125 @@
 import React, { useState, useEffect } from "react";
-import { PROJECTS, COMPANY_IMAGES } from "../constants";
-import { Project } from "../types";
+import { ArrowDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { HERO_SLIDES } from "../utils/heroSlides";
 
-/* ======================================================
-   PROJECT CARD
-====================================================== */
+/* ================= CONFIG ================= */
+const SLIDE_INTERVAL = 5000;
+const SWIPE_THRESHOLD = 80;
 
-const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
-  const [activeImageIndex, setActiveImageIndex] = useState(0);
-  const [isHovered, setIsHovered] = useState(false);
+/* ================= COMPONENT ================= */
+const Hero: React.FC = () => {
+  const [currentSlide, setCurrentSlide] = useState(0);
 
-  /* ---------- IMAGE DATA ---------- */
-  const validImages =
-    project.images?.filter(
-      (img) => typeof img === "string" && img.trim().length > 0
-    ) || [];
+  /* -------- AUTO SLIDE -------- */
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % HERO_SLIDES.length);
+    }, SLIDE_INTERVAL);
 
-  const images =
-    validImages.length > 0
-      ? validImages
-      : [COMPANY_IMAGES.projectPlaceholder];
+    return () => clearInterval(timer);
+  }, []);
 
-  const isLogoFallback =
-    images[activeImageIndex] === COMPANY_IMAGES.projectPlaceholder;
+  const next = () =>
+    setCurrentSlide((prev) => (prev + 1) % HERO_SLIDES.length);
 
-  /* ---------- NAV HELPERS ---------- */
-  const nextImage = () =>
-    setActiveImageIndex((prev) => (prev + 1) % images.length);
-
-  const prevImage = () =>
-    setActiveImageIndex((prev) =>
-      prev === 0 ? images.length - 1 : prev - 1
+  const prev = () =>
+    setCurrentSlide((prev) =>
+      prev === 0 ? HERO_SLIDES.length - 1 : prev - 1
     );
 
-  /* ---------- DESKTOP HOVER SLIDESHOW ---------- */
-  useEffect(() => {
-    if (!isHovered || images.length <= 1) return;
-
-    const interval = window.setInterval(nextImage, 4000);
-    return () => clearInterval(interval);
-  }, [isHovered, images.length]);
+  const slide = HERO_SLIDES[currentSlide];
 
   return (
-    <motion.div
-      className="relative group cursor-pointer h-full"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => {
-        setIsHovered(false);
-        setActiveImageIndex(0); // reset after hover
-      }}
-      whileHover={{
-        scale: 1.04,
-        zIndex: 20,
-        boxShadow: "0px 20px 40px rgba(0,0,0,0.6)",
-      }}
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.4 }}
-      layout
+    <section
+      id="home"
+      className="
+        relative w-full overflow-hidden bg-black
+        h-[100svh] md:h-screen
+      "
     >
-      {/* IMAGE CONTAINER (SWIPE ENABLED) */}
+      {/* ================= IMAGE ================= */}
       <motion.div
-        className="relative aspect-video w-full overflow-hidden bg-black border border-white/10 group-hover:border-accent/50 transition-colors"
-        drag={images.length > 1 ? "x" : false}
+        className="absolute inset-0"
+        drag="x"
         dragConstraints={{ left: 0, right: 0 }}
         dragElastic={0.15}
         onDragEnd={(_, info) => {
-          if (info.offset.x < -80) nextImage();
-          if (info.offset.x > 80) prevImage();
+          if (info.offset.x < -SWIPE_THRESHOLD) next();
+          if (info.offset.x > SWIPE_THRESHOLD) prev();
         }}
       >
-        {/* IMAGE */}
         <AnimatePresence mode="wait">
           <motion.img
-            key={activeImageIndex}
-            src={images[activeImageIndex]}
-            alt={project.name}
-            className={`absolute inset-0 w-full h-full bg-black transition-all duration-300 ${
-              isLogoFallback
-                ? "object-contain p-12 max-w-[60%] max-h-[60%] mx-auto my-auto opacity-80"
-                : "object-cover"
-            }`}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
+            key={slide.image}
+            src={slide.image}
+            alt={slide.title}
+            className="
+              absolute inset-0 w-full h-full
+              object-contain md:object-cover
+              bg-black
+            "
+            initial={{ opacity: 0, scale: 1.04 }}
+            animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.6 }}
-            onError={(e) => {
-              const img = e.target as HTMLImageElement;
-              if (!img.dataset.fallback) {
-                img.dataset.fallback = "true";
-                img.src = COMPANY_IMAGES.projectPlaceholder;
-              }
-            }}
+            transition={{ duration: 1 }}
           />
         </AnimatePresence>
 
-        {/* GRADIENT OVERLAY */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent z-10 pointer-events-none" />
-
-        {/* TEXT */}
-        <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6 z-20 pointer-events-none">
-          <span className="inline-block text-accent text-[10px] font-bold uppercase tracking-widest bg-black/60 px-2 py-1 rounded">
-            {project.client || "Project"}
-          </span>
-
-          <h3 className="mt-2 text-sm md:text-xl font-display font-bold text-white uppercase leading-snug line-clamp-3 md:line-clamp-none">
-            {project.name}
-          </h3>
-        </div>
+        {/* OVERLAYS */}
+        <div className="absolute inset-0 bg-black/50 z-10" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-transparent to-black z-10" />
       </motion.div>
-    </motion.div>
-  );
-};
 
-/* ======================================================
-   PROJECTS SECTION
-====================================================== */
+      {/* ================= CONTENT ================= */}
+      <div className="relative z-20 flex flex-col items-center justify-center text-center h-full px-6">
+        <span className="mb-4 px-4 py-1 border border-white/30 rounded-full text-accent text-xs tracking-widest">
+          EST. 2011 • ANDHRA PRADESH
+        </span>
 
-const Projects: React.FC = () => {
-  const [showAll, setShowAll] = useState(false);
-  const displayProjects = showAll ? PROJECTS : PROJECTS.slice(0, 6);
+        <h1 className="text-4xl md:text-7xl font-display font-bold text-white uppercase mb-4">
+          {slide.title}
+        </h1>
 
-  return (
-    <section id="projects" className="py-32 bg-black overflow-x-hidden">
-      <div className="max-w-7xl mx-auto px-6 lg:px-12">
-        {/* HEADER */}
-        <div className="flex flex-col md:flex-row justify-between items-end mb-20 border-b border-white/10 pb-8">
-          <h2 className="text-4xl md:text-5xl font-display font-bold text-white uppercase">
-            Selected Works
-          </h2>
+        <p className="text-slate-300 max-w-xl mb-8 text-sm md:text-base">
+          {slide.subtitle}
+        </p>
 
-          <button
-            onClick={() => setShowAll(!showAll)}
-            className="text-xs font-bold text-slate-500 uppercase tracking-widest hover:text-white transition-colors mt-4 md:mt-0"
+        <div className="flex gap-4">
+          <a
+            href="#projects"
+            className="px-6 py-3 bg-white text-black font-bold uppercase text-xs tracking-widest"
           >
-            {showAll ? "Show Less" : "View Full Portfolio"}
-          </button>
+            View Projects
+          </a>
+          <a
+            href="#contact"
+            className="px-6 py-3 border border-white/40 text-white font-bold uppercase text-xs tracking-widest"
+          >
+            Contact Us
+          </a>
         </div>
+      </div>
 
-        {/* GRID */}
-        <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-12"
-          layout
-        >
-          <AnimatePresence>
-            {displayProjects.map((project) => (
-              <ProjectCard key={project.id} project={project} />
-            ))}
-          </AnimatePresence>
-        </motion.div>
+      {/* ================= DOTS ================= */}
+      <div className="absolute bottom-20 left-1/2 -translate-x-1/2 flex gap-2 z-30">
+        {HERO_SLIDES.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => setCurrentSlide(i)}
+            className={`w-2.5 h-2.5 rounded-full transition ${
+              i === currentSlide ? "bg-white scale-125" : "bg-white/40"
+            }`}
+          />
+        ))}
+      </div>
 
-        {/* MOBILE LOAD MORE */}
-        {!showAll && PROJECTS.length > 6 && (
-          <div className="mt-16 text-center">
-            <button
-              onClick={() => setShowAll(true)}
-              className="px-8 py-4 border border-white/10 text-white font-bold text-sm uppercase tracking-widest hover:bg-white hover:text-black transition-colors"
-            >
-              Load All Projects
-            </button>
-          </div>
-        )}
+      {/* ================= SCROLL ================= */}
+      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-white/50 animate-bounce z-30">
+        <ArrowDown size={22} />
       </div>
     </section>
   );
 };
 
-export default Projects;
+export default Hero;
