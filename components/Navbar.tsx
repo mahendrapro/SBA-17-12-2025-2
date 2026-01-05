@@ -93,7 +93,11 @@ const navLinks = [
                 key={link.name}
                 href={link.href}
                 onClick={(e) => handleScroll(e, link.href)}
-                className="text-xs font-bold text-slate-300 hover:text-white tracking-[0.2em] uppercase transition-colors duration-200"
+className={`text-xs font-bold tracking-[0.2em] uppercase transition-colors duration-200 ${
+  link.name === "Clients"
+    ? "text-white"
+    : "text-slate-300 hover:text-white"
+}`}
               >
                 {link.name}
               </a>
@@ -141,7 +145,8 @@ const navLinks = [
               <a
                   href="#contact"
                   onClick={(e) => handleScroll(e, '#contact')}
-                  className="mt-8 px-10 py-4 bg-accent text-black font-bold text-sm uppercase tracking-widest shadow-[0_0_20px_rgba(56,189,248,0.4)]"
+                  className="mt-8 px-10 py-4 bg-accent text-black font-bold text-sm uppercase tracking-widest shadow-[0_0_20px_rgba(245,158,11,0.35)]
+"
                 >
                   Get in Touch
               </a>
