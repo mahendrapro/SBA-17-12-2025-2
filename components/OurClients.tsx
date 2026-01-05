@@ -11,7 +11,7 @@ const clients = [
   { name: "Joyalukkas Foundation", logo: "/images/clients/joyalukkas.png" },
   { name: "Suzlon Infrastructure", logo: "/images/clients/suzlon.png" },
   { name: "Tirupati Steels", logo: "/images/clients/tirupati-steels.png" },
-  { name: "Government of Andhra Pradesh", logo: "/images/clients/govt-andhra-pradesh.png" },
+  { name: "Government of Andhra Pradesh", logo: "/images/clients/govt-andhra-pradesh.jpg" },
   { name: "Government of Karnataka", logo: "/images/clients/govt-karnataka.png" },
   { name: "Indian Railways", logo: "/images/clients/irctc.png" },
   { name: "KIADB", logo: "/images/clients/kiadb.png" },
@@ -34,12 +34,15 @@ const partners = [
 /* ======================================================
    REUSABLE COMPONENTS
 ====================================================== */
-
 const ScrollingRow: React.FC<{ children: React.ReactNode }> = ({ children }) => (
   <div className="relative w-full overflow-hidden">
-    <div className="flex items-center gap-12 animate-client-scroll hover:[animation-play-state:paused] whitespace-nowrap">
-      {children}
-      {children}
+    <div className="flex w-max animate-client-scroll hover:[animation-play-state:paused]">
+      <div className="flex items-center gap-12 pr-12">
+        {children}
+      </div>
+      <div className="flex items-center gap-12 pr-12">
+        {children}
+      </div>
     </div>
   </div>
 );
@@ -56,7 +59,7 @@ const LogoCard: React.FC<{ src: string; name: string }> = ({ src, name }) => (
 );
 
 const MunicipalityCard: React.FC<{ name: string }> = ({ name }) => (
-<div className="flex items-center justify-center min-w-[200px] h-28 bg-white/5 border border-white/10 rounded-lg px-6">
+  <div className="flex flex-col items-center justify-center min-w-[220px] h-28 bg-white/5 border border-white/10 rounded-lg px-6 text-center">
     <span className="text-white text-sm font-bold uppercase tracking-wide">
       {name}
     </span>
@@ -65,6 +68,7 @@ const MunicipalityCard: React.FC<{ name: string }> = ({ name }) => (
     </span>
   </div>
 );
+
 
 /* ======================================================
    MAIN SECTION
