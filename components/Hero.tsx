@@ -4,26 +4,26 @@ import { motion, AnimatePresence } from "framer-motion";
 import { HERO_SLIDES } from "../constants";
 
 /* ================= CONFIG ================= */
-const SLIDE_INTERVAL = 5000; // 5 seconds per slide
-const ANIMATION_DURATION = 1.2; // seconds (Framer Motion)
+const SLIDE_INTERVAL = 5000;
+const ANIMATION_DURATION = 1.2;
 
 /* ================= COMPONENT ================= */
 const Hero: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
+  const [pauseOnDots, setPauseOnDots] = useState(false);
 
-  /* -------- AUTO SLIDE (STABLE & CLEAN) -------- */
+  /* -------- AUTO SLIDE (STRICT 5s) -------- */
   useEffect(() => {
-    if (isPaused) return;
+    if (pauseOnDots) return;
 
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % HERO_SLIDES.length);
     }, SLIDE_INTERVAL);
 
     return () => clearInterval(timer);
-  }, [isPaused]);
+  }, [pauseOnDots]);
 
-  /* -------- MANUAL DOT CHANGE -------- */
+  /* -------- MANUAL DOT CLICK -------- */
   const changeSlide = (index: number) => {
     if (index === currentSlide) return;
     setCurrentSlide(index);
@@ -35,8 +35,6 @@ const Hero: React.FC = () => {
     <section
       id="home"
       className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-black"
-      onMouseEnter={() => setIsPaused(true)}
-      onMouseLeave={() => setIsPaused(false)}
     >
       {/* ================= BACKGROUND IMAGE ================= */}
       <div className="absolute inset-0 z-0">
@@ -56,7 +54,6 @@ const Hero: React.FC = () => {
           />
         </AnimatePresence>
 
-        {/* Overlays */}
         <div className="absolute inset-0 bg-black/50 z-10" />
         <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-transparent to-black z-10" />
       </div>
@@ -92,7 +89,11 @@ const Hero: React.FC = () => {
       </div>
 
       {/* ================= DOT NAVIGATION ================= */}
-      <div className="absolute bottom-28 left-1/2 -translate-x-1/2 z-30 flex gap-3">
+      <div
+        className="absolute bottom-28 left-1/2 -translate-x-1/2 z-30 flex gap-3"
+        onMouseEnter={() => setPauseOnDots(true)}
+        onMouseLeave={() => setPauseOnDots(false)}
+      >
         {HERO_SLIDES.map((_, index) => (
           <button
             key={index}
