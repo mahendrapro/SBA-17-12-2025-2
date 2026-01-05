@@ -11,13 +11,12 @@ const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
   const [activeImageIndex, setActiveImageIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
 
-  // Filter valid images
+  /* -------- IMAGE DATA -------- */
   const validImages =
     project.images?.filter(
       (img) => typeof img === "string" && img.trim().length > 0
     ) || [];
 
-  // Use logo as fallback if no images
   const images =
     validImages.length > 0
       ? validImages
@@ -26,14 +25,25 @@ const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
   const isLogoFallback =
     images[activeImageIndex] === COMPANY_IMAGES.projectPlaceholder;
 
-  /* -------- SLIDESHOW LOGIC -------- */
+  /* -------- IMAGE NAV HELPERS -------- */
+  const handleNext = () => {
+    setActiveImageIndex((prev) => (prev + 1) % images.length);
+  };
+
+  const handlePrev = () => {
+    setActiveImageIndex((prev) =>
+      prev === 0 ? images.length - 1 : prev - 1
+    );
+  };
+
+  /* -------- DESKTOP HOVER SLIDESHOW -------- */
   useEffect(() => {
     let interval: number | undefined;
 
     if (isHovered && images.length > 1) {
       interval = window.setInterval(() => {
         setActiveImageIndex((prev) => (prev + 1) % images.length);
-      }, 4000); // ✅ 4 seconds
+      }, 4000);
     } else {
       setActiveImageIndex(0);
     }
@@ -59,8 +69,17 @@ const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
       transition={{ duration: 0.4 }}
       layout
     >
-      {/* IMAGE CONTAINER */}
-      <div className="relative aspect-video w-full overflow-hidden bg-black border border-white/10 group-hover:border-accent/50 transition-colors">
+      {/* IMAGE CONTAINER (SWIPE ENABLED) */}
+      <motion.div
+        className="relative aspect-video w-full overflow-hidden bg-black border border-white/10 group-hover:border-accent/50 transition-colors"
+        drag={images.length > 1 ? "x" : false}
+        dragConstraints={{ left: 0, right: 0 }}
+        dragElastic={0.15}
+        onDragEnd={(_, info) => {
+          if (info.offset.x < -80) handleNext();
+          if (info.offset.x > 80) handlePrev();
+        }}
+      >
         {/* IMAGE SLIDES */}
         <AnimatePresence mode="wait">
           <motion.img
@@ -86,11 +105,11 @@ const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
           />
         </AnimatePresence>
 
-        {/* GRADIENT OVERLAY */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent z-10" />
+        {/* GRADIENT OVERLAY (DO NOT BLOCK SWIPE) */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent z-10 pointer-events-none" />
 
-        {/* TEXT */}
-        <div className="absolute bottom-0 left-0 right-0 p-6 z-20">
+        {/* TEXT (MOBILE SAFE) */}
+        <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6 z-20 pointer-events-none">
           <div className="flex items-center justify-between mb-2">
             <span className="text-accent text-[10px] font-bold uppercase tracking-widest bg-black/60 px-2 py-1 rounded">
               {project.client || "Project"}
@@ -103,11 +122,11 @@ const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
             )}
           </div>
 
-          <h3 className="text-xl font-display font-bold text-white uppercase leading-snug group-hover:text-accent transition-colors">
+          <h3 className="text-sm md:text-xl font-display font-bold text-white uppercase leading-snug line-clamp-3 md:line-clamp-none group-hover:text-accent transition-colors">
             {project.name}
           </h3>
         </div>
-      </div>
+      </motion.div>
     </motion.div>
   );
 };
