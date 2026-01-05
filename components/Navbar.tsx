@@ -33,6 +33,8 @@ const Navbar: React.FC = () => {
     { name: 'Projects', href: '#projects' },
     { name: 'Services', href: '#services' },
     { name: 'Team', href: '#team' },
+    { name: "Clients", href: "#clients" },
+
   ];
 
   const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
