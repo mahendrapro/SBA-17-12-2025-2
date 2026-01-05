@@ -11,11 +11,16 @@ const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
   const [activeImageIndex, setActiveImageIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
 
-  // ✅ SAFE IMAGE SOURCE (NO EXTERNAL / NO 404)
-  const images =
-    project.images && project.images.length > 0
-      ? project.images
-      : [COMPANY_IMAGES.projectPlaceholder];
+const validImages =
+  project.images?.filter(
+    (img) => typeof img === "string" && img.trim().length > 0
+  ) || [];
+
+const images =
+  validImages.length > 0
+    ? validImages
+    : [COMPANY_IMAGES.projectPlaceholder];
+
 
   useEffect(() => {
     let interval: NodeJS.Timeout | undefined;
@@ -23,7 +28,7 @@ const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
     if (isHovered && images.length > 1) {
       interval = setInterval(() => {
         setActiveImageIndex((prev) => (prev + 1) % images.length);
-      }, 1500);
+      }, 4000);
     } else {
       setActiveImageIndex(0);
     }
@@ -63,10 +68,16 @@ const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.8 }}
-            onError={(e) => {
-              (e.target as HTMLImageElement).src =
-                COMPANY_IMAGES.projectPlaceholder;
-            }}
+          onError={(e) => {
+  const img = e.target as HTMLImageElement;
+
+  // Prevent infinite loop
+  if (!img.dataset.fallback) {
+    img.dataset.fallback = "true";
+    img.src = COMPANY_IMAGES.projectPlaceholder;
+  }
+}}
+
           />
         </AnimatePresence>
 
