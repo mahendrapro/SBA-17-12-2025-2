@@ -1,11 +1,11 @@
 export interface Project {
   id: number;
   name: string;
-  value: string; // Represented as string to include "Lakhs"
-  client?: string;
-  category?: string;
-  image?: string; // Primary cover image
-  images?: string[]; // Array of images for slideshow
+  value: string;        // REQUIRED
+  client?: string;      // OPTIONAL
+  category?: string;    // OPTIONAL (NEW)
+  image?: string;       // OPTIONAL
+  images?: string[];    // OPTIONAL
 }
 
 export interface Value {
