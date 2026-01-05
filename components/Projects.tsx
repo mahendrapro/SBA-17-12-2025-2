@@ -113,3 +113,58 @@ const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
     </motion.div>
   );
 };
+
+/* ======================================================
+   PROJECTS SECTION
+====================================================== */
+
+const Projects: React.FC = () => {
+  const [showAll, setShowAll] = useState(false);
+  const displayProjects = showAll ? PROJECTS : PROJECTS.slice(0, 6);
+
+  return (
+    <section id="projects" className="py-32 bg-black overflow-x-hidden">
+      <div className="max-w-7xl mx-auto px-6 lg:px-12">
+        {/* HEADER */}
+        <div className="flex flex-col md:flex-row justify-between items-end mb-20 border-b border-white/10 pb-8">
+          <h2 className="text-4xl md:text-5xl font-display font-bold text-white uppercase">
+            Selected Works
+          </h2>
+
+          <button
+            onClick={() => setShowAll(!showAll)}
+            className="text-xs font-bold text-slate-500 uppercase tracking-widest hover:text-white transition-colors mt-4 md:mt-0"
+          >
+            {showAll ? "Show Less" : "View Full Portfolio"}
+          </button>
+        </div>
+
+        {/* GRID */}
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-12"
+          layout
+        >
+          <AnimatePresence>
+            {displayProjects.map((project) => (
+              <ProjectCard key={project.id} project={project} />
+            ))}
+          </AnimatePresence>
+        </motion.div>
+
+        {/* MOBILE LOAD MORE */}
+        {!showAll && PROJECTS.length > 6 && (
+          <div className="mt-16 text-center">
+            <button
+              onClick={() => setShowAll(true)}
+              className="px-8 py-4 border border-white/10 text-white font-bold text-sm uppercase tracking-widest hover:bg-white hover:text-black transition-colors"
+            >
+              Load All Projects
+            </button>
+          </div>
+        )}
+      </div>
+    </section>
+  );
+};
+
+export default Projects;
