@@ -27,15 +27,15 @@ const Navbar: React.FC = () => {
     };
   }, [isOpen]);
 
-  const navLinks = [
-    { name: 'Home', href: '#home' },
-    { name: 'About', href: '#about' },
-    { name: 'Projects', href: '#projects' },
-    { name: 'Services', href: '#services' },
-    { name: 'Team', href: '#team' },
-    { name: "Clients", href: "#clients" },
-
-  ];
+const navLinks = [
+  { name: 'Home', href: '#home' },
+  { name: 'About', href: '#about' },
+  { name: 'Services', href: '#services' },
+  { name: 'Clients', href: '#clients' },
+  { name: 'Projects', href: '#projects' },
+  { name: 'Team', href: '#team' },
+];
+;
 
   const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
