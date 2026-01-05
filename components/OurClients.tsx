@@ -32,7 +32,7 @@ const partners = [
 ];
 
 /* ======================================================
-   SCROLLING ROW COMPONENT
+   REUSABLE COMPONENTS
 ====================================================== */
 
 const ScrollingRow: React.FC<{ children: React.ReactNode }> = ({ children }) => (
@@ -44,7 +44,7 @@ const ScrollingRow: React.FC<{ children: React.ReactNode }> = ({ children }) => 
   </div>
 );
 
-const LogoCard = ({ src, name }: { src: string; name: string }) => (
+const LogoCard: React.FC<{ src: string; name: string }> = ({ src, name }) => (
   <div className="flex items-center justify-center min-w-[160px] h-24 bg-white/5 border border-white/10 rounded-lg px-6">
     <img
       src={src}
@@ -54,10 +54,10 @@ const LogoCard = ({ src, name }: { src: string; name: string }) => (
   </div>
 );
 
-const TextCard = ({ text }: { text: string }) => (
+const MunicipalityCard: React.FC<{ name: string }> = ({ name }) => (
   <div className="flex flex-col items-center justify-center min-w-[220px] h-24 bg-white/5 border border-white/10 rounded-lg px-6 text-center">
     <span className="text-white text-sm font-bold uppercase tracking-wide">
-      {text}
+      {name}
     </span>
     <span className="text-slate-400 text-[10px] uppercase tracking-widest mt-1">
       Municipality
@@ -66,10 +66,10 @@ const TextCard = ({ text }: { text: string }) => (
 );
 
 /* ======================================================
-   CLIENTS SECTION
+   MAIN SECTION
 ====================================================== */
 
-const Clients: React.FC = () => {
+const OurClients: React.FC = () => {
   return (
     <section id="clients" className="py-28 bg-black overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
@@ -90,7 +90,7 @@ const Clients: React.FC = () => {
             ))}
 
             {municipalities.map((name) => (
-              <TextCard key={name} text={name} />
+              <MunicipalityCard key={name} name={name} />
             ))}
           </ScrollingRow>
         </div>
@@ -117,4 +117,4 @@ const Clients: React.FC = () => {
   );
 };
 
-export default Clients;
+export default OurClients;
