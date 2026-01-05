@@ -11,26 +11,29 @@ const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
   const [activeImageIndex, setActiveImageIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
 
-const validImages =
-  project.images?.filter(
-    (img) => typeof img === "string" && img.trim().length > 0
-  ) || [];
+  // Filter valid images
+  const validImages =
+    project.images?.filter(
+      (img) => typeof img === "string" && img.trim().length > 0
+    ) || [];
 
-const images =
-  validImages.length > 0
-    ? validImages
-    : [COMPANY_IMAGES.projectPlaceholder];
+  // Use logo as fallback if no images
+  const images =
+    validImages.length > 0
+      ? validImages
+      : [COMPANY_IMAGES.projectPlaceholder];
 
-const isLogoFallback =
-  images[activeImageIndex] === COMPANY_IMAGES.projectPlaceholder;
+  const isLogoFallback =
+    images[activeImageIndex] === COMPANY_IMAGES.projectPlaceholder;
 
+  /* -------- SLIDESHOW LOGIC -------- */
   useEffect(() => {
-    let interval: NodeJS.Timeout | undefined;
+    let interval: number | undefined;
 
     if (isHovered && images.length > 1) {
-      interval = setInterval(() => {
+      interval = window.setInterval(() => {
         setActiveImageIndex((prev) => (prev + 1) % images.length);
-      }, 3000);
+      }, 4000); // ✅ 4 seconds
     } else {
       setActiveImageIndex(0);
     }
@@ -38,7 +41,7 @@ const isLogoFallback =
     return () => {
       if (interval) clearInterval(interval);
     };
-  }, [isHovered, images.length]);
+  }, [isHovered, images]);
 
   return (
     <motion.div
@@ -58,32 +61,28 @@ const isLogoFallback =
     >
       {/* IMAGE CONTAINER */}
       <div className="relative aspect-video w-full overflow-hidden bg-black border border-white/10 group-hover:border-accent/50 transition-colors">
-
         {/* IMAGE SLIDES */}
         <AnimatePresence mode="wait">
-       <motion.img
-  key={activeImageIndex}
-  src={images[activeImageIndex]}
-  alt={project.name}
-  className={`absolute inset-0 w-full h-full bg-black transition-all duration-300 ${
-    isLogoFallback
-      ? "object-contain p-16 max-w-[60%] max-h-[60%] mx-auto my-auto opacity-80"
-      : "object-cover"
-  }`}
-  initial={{ opacity: 0 }}
-  animate={{ opacity: 1 }}
-  exit={{ opacity: 0 }}
-  transition={{ duration: 0.8 }}
-  onError={(e) => {
-    const img = e.target as HTMLImageElement;
-    if (!img.dataset.fallback) {
-      img.dataset.fallback = "true";
-      img.src = COMPANY_IMAGES.projectPlaceholder;
-    }
-  }}
-/>
-
-
+          <motion.img
+            key={activeImageIndex}
+            src={images[activeImageIndex]}
+            alt={project.name}
+            className={`absolute inset-0 w-full h-full bg-black transition-all duration-300 ${
+              isLogoFallback
+                ? "object-contain p-16 max-w-[60%] max-h-[60%] mx-auto my-auto opacity-80"
+                : "object-cover"
+            }`}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.8 }}
+            onError={(e) => {
+              const img = e.target as HTMLImageElement;
+              if (!img.dataset.fallback) {
+                img.dataset.fallback = "true";
+                img.src = COMPANY_IMAGES.projectPlaceholder;
+              }
+            }}
           />
         </AnimatePresence>
 
@@ -124,7 +123,6 @@ const Projects: React.FC = () => {
   return (
     <section id="projects" className="py-32 bg-black overflow-x-hidden">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
-
         {/* HEADER */}
         <div className="flex flex-col md:flex-row justify-between items-end mb-20 border-b border-white/10 pb-8">
           <h2 className="text-4xl md:text-5xl font-display font-bold text-white uppercase">
