@@ -45,17 +45,18 @@ const ScrollingRow: React.FC<{ children: React.ReactNode }> = ({ children }) => 
 );
 
 const LogoCard: React.FC<{ src: string; name: string }> = ({ src, name }) => (
-  <div className="flex items-center justify-center min-w-[160px] h-24 bg-white/5 border border-white/10 rounded-lg px-6">
-    <img
-      src={src}
-      alt={name}
-      className="max-h-12 object-contain grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-    />
+<div className="flex items-center justify-center min-w-[200px] h-28 bg-white/5 border border-white/10 rounded-lg px-6">
+  <img
+  src={src}
+  alt={name}
+  className="max-h-24 object-contain"
+/>
+
   </div>
 );
 
 const MunicipalityCard: React.FC<{ name: string }> = ({ name }) => (
-  <div className="flex flex-col items-center justify-center min-w-[220px] h-24 bg-white/5 border border-white/10 rounded-lg px-6 text-center">
+<div className="flex items-center justify-center min-w-[200px] h-28 bg-white/5 border border-white/10 rounded-lg px-6">
     <span className="text-white text-sm font-bold uppercase tracking-wide">
       {name}
     </span>
