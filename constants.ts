@@ -22,8 +22,11 @@ export const COMPANY_DETAILS = {
 export const COMPANY_IMAGES = {
   logo: "/images/logo.png",
   about: "/images/about-us.jpeg",
-  projectPlaceholder: "/images/project-placeholder.jpg",
+
+  // 👇 Use logo as project fallback
+  projectPlaceholder: "/images/logo.png",
 };
+
 
 // =======================================================
 // PROJECT IMAGE COLLECTIONS
