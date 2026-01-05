@@ -74,39 +74,8 @@ const IMAGES_BRITISH_PAINTS = [
 ];
 
 // =======================================================
-// HERO SLIDES (AUTO FROM PROJECT HERO IMAGES)
-// =======================================================
-
-export const HERO_SLIDES = [
-  {
-    image: IMAGES_BERGER_BARREL[0],
-    title: "INDUSTRIAL CONSTRUCTION",
-    subtitle: "Large scale industrial infrastructure since 2011",
-  },
-  {
-    image: IMAGES_BERGER_CSR[0],
-    title: "CSR & COMMUNITY PROJECTS",
-    subtitle: "Supporting public infrastructure and community growth",
-  },
-  {
-    image: IMAGES_BERGER_CANOPY[0],
-    title: "INDUSTRIAL EXPANSION",
-    subtitle: "Complex upgrades with safety and precision",
-  },
-  {
-    image: IMAGES_BERGER_STP[0],
-    title: "WATER & ENVIRONMENT",
-    subtitle: "Sustainable sewage and water treatment projects",
-  },
-  {
-    image: IMAGES_SAI_PARK[0],
-    title: "CSR PARK DEVELOPMENT",
-    subtitle: "Sri Sathya Sai Park at Puttaparthi",
-  },
-];
-
-// =======================================================
 // PROJECTS LIST (MASTER DATA)
+// FIRST IMAGE IS USED AS HERO
 // =======================================================
 
 export const PROJECTS: Project[] = [
@@ -165,7 +134,7 @@ export const PROJECTS: Project[] = [
     images: IMAGES_SAI_PARK,
   },
 
-  // -------- TEXT PROJECTS (IMAGE READY LATER) --------
+  // -------- TEXT PROJECTS (NO IMAGES YET) --------
 
   { id: 7, name: "R&D Development Center – Wipro Enterprises – Peenya, Bengaluru", value: "—", client: "Wipro", category: "Industrial" },
   { id: 8, name: "Material Handling Tank Shed – Wipro – Hindupur", value: "—", client: "Wipro", category: "Industrial" },
