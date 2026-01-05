@@ -28,7 +28,7 @@ const images =
     if (isHovered && images.length > 1) {
       interval = setInterval(() => {
         setActiveImageIndex((prev) => (prev + 1) % images.length);
-      }, 4000);
+      }, 3000);
     } else {
       setActiveImageIndex(0);
     }
