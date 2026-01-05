@@ -113,23 +113,7 @@ const Hero: React.FC = () => {
         </div>
       </div>
 
-      {/* Arrows */}
-      <div className="absolute bottom-14 left-1/2 -translate-x-1/2 z-30 flex gap-6">
-        <button
-          onClick={handlePrev}
-          disabled={isAnimating}
-          className="w-12 h-12 flex items-center justify-center border border-white/30 text-white hover:bg-white hover:text-black transition disabled:opacity-40"
-        >
-          <ArrowLeft size={20} />
-        </button>
-        <button
-          onClick={handleNext}
-          disabled={isAnimating}
-          className="w-12 h-12 flex items-center justify-center border border-white/30 text-white hover:bg-white hover:text-black transition disabled:opacity-40"
-        >
-          <ArrowRight size={20} />
-        </button>
-      </div>
+  
 
       {/* Dots */}
       <div className="absolute bottom-28 left-1/2 -translate-x-1/2 z-30 flex gap-3">
