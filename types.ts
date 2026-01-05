@@ -1,12 +1,13 @@
 export interface Project {
   id: number;
   name: string;
-  value: string;        // REQUIRED
-  client?: string;      // OPTIONAL
-  category?: string;    // OPTIONAL (NEW)
-  image?: string;       // OPTIONAL
-  images?: string[];    // OPTIONAL
+  client?: string;
+  value?: string;
+  images?: string[];
+  heroImage?: string;     // 👈 NEW (optional)
+  heroSubtitle?: string;  // 👈 NEW (optional)
 }
+
 
 export interface Value {
   title: string;
