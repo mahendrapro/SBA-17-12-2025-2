@@ -4,18 +4,19 @@ import { motion, AnimatePresence } from "framer-motion";
 import { HERO_SLIDES } from "../constants";
 
 const SLIDE_INTERVAL = 5000;
-const ANIMATION_DURATION = 1200; // must match motion transition
+const ANIMATION_DURATION = 1200;
 
 const Hero: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
   const intervalRef = useRef<number | null>(null);
 
-  // ---------- Auto slide ----------
+  // ---------------- Auto Slide ----------------
   const startAutoSlide = () => {
     stopAutoSlide();
     intervalRef.current = window.setInterval(() => {
-      triggerNext();
+      handleNext();
     }, SLIDE_INTERVAL);
   };
 
@@ -27,33 +28,31 @@ const Hero: React.FC = () => {
   };
 
   useEffect(() => {
-    startAutoSlide();
+    if (!isPaused) startAutoSlide();
     return () => stopAutoSlide();
-  }, []);
+  }, [isPaused]);
 
-  // ---------- Slide handlers ----------
-  const triggerNext = () => {
+  // ---------------- Slide Controls ----------------
+  const lockAndChange = (index: number) => {
     if (isAnimating) return;
     setIsAnimating(true);
-    setCurrentSlide((prev) => (prev + 1) % HERO_SLIDES.length);
-    resetAfterAnimation();
-  };
-
-  const triggerPrev = () => {
-    if (isAnimating) return;
-    setIsAnimating(true);
-    setCurrentSlide(
-      (prev) => (prev - 1 + HERO_SLIDES.length) % HERO_SLIDES.length
-    );
-    resetAfterAnimation();
-  };
-
-  const resetAfterAnimation = () => {
+    setCurrentSlide(index);
     stopAutoSlide();
+
     setTimeout(() => {
       setIsAnimating(false);
-      startAutoSlide();
+      if (!isPaused) startAutoSlide();
     }, ANIMATION_DURATION);
+  };
+
+  const handleNext = () => {
+    lockAndChange((currentSlide + 1) % HERO_SLIDES.length);
+  };
+
+  const handlePrev = () => {
+    lockAndChange(
+      (currentSlide - 1 + HERO_SLIDES.length) % HERO_SLIDES.length
+    );
   };
 
   const slide = HERO_SLIDES[currentSlide];
@@ -62,6 +61,8 @@ const Hero: React.FC = () => {
     <section
       id="home"
       className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-black"
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
     >
       {/* Background */}
       <div className="absolute inset-0 z-0">
@@ -112,17 +113,17 @@ const Hero: React.FC = () => {
         </div>
       </div>
 
-      {/* Controls */}
-      <div className="absolute bottom-12 left-1/2 -translate-x-1/2 z-30 flex gap-6">
+      {/* Arrows */}
+      <div className="absolute bottom-14 left-1/2 -translate-x-1/2 z-30 flex gap-6">
         <button
-          onClick={triggerPrev}
+          onClick={handlePrev}
           disabled={isAnimating}
           className="w-12 h-12 flex items-center justify-center border border-white/30 text-white hover:bg-white hover:text-black transition disabled:opacity-40"
         >
           <ArrowLeft size={20} />
         </button>
         <button
-          onClick={triggerNext}
+          onClick={handleNext}
           disabled={isAnimating}
           className="w-12 h-12 flex items-center justify-center border border-white/30 text-white hover:bg-white hover:text-black transition disabled:opacity-40"
         >
@@ -130,7 +131,22 @@ const Hero: React.FC = () => {
         </button>
       </div>
 
-      {/* Scroll indicator */}
+      {/* Dots */}
+      <div className="absolute bottom-28 left-1/2 -translate-x-1/2 z-30 flex gap-3">
+        {HERO_SLIDES.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => lockAndChange(index)}
+            className={`w-3 h-3 rounded-full transition ${
+              index === currentSlide
+                ? "bg-white"
+                : "bg-white/40 hover:bg-white/70"
+            }`}
+          />
+        ))}
+      </div>
+
+      {/* Scroll Indicator */}
       <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-white/50 animate-bounce z-20">
         <ArrowDown size={22} />
       </div>
