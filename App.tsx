@@ -4,7 +4,7 @@ import Hero from './components/Hero';
 import About from './components/About';
 import Services from './components/Services';
 import Projects from './components/Projects';
-import Our Clients from "./components/OurClients";
+import OurClients from "./components/OurClients";
 import Leadership from './components/Leadership';
 import Contact from './components/Contact';
 
