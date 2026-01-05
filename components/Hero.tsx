@@ -11,6 +11,7 @@ const ANIMATION_DURATION = 1.2;
 const Hero: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [pauseOnDots, setPauseOnDots] = useState(false);
+  const [slideTick, setSlideTick] = useState(0); // ⏱ forces timer reset
 
   /* -------- AUTO SLIDE (STRICT 5s) -------- */
   useEffect(() => {
@@ -21,12 +22,26 @@ const Hero: React.FC = () => {
     }, SLIDE_INTERVAL);
 
     return () => clearInterval(timer);
-  }, [pauseOnDots]);
+  }, [pauseOnDots, slideTick]);
+
+  /* -------- SLIDE HELPERS -------- */
+  const handleNext = () => {
+    setCurrentSlide((prev) => (prev + 1) % HERO_SLIDES.length);
+    setSlideTick((t) => t + 1); // reset timer
+  };
+
+  const handlePrev = () => {
+    setCurrentSlide((prev) =>
+      prev === 0 ? HERO_SLIDES.length - 1 : prev - 1
+    );
+    setSlideTick((t) => t + 1); // reset timer
+  };
 
   /* -------- MANUAL DOT CLICK -------- */
   const changeSlide = (index: number) => {
     if (index === currentSlide) return;
     setCurrentSlide(index);
+    setSlideTick((t) => t + 1); // reset timer
   };
 
   const slide = HERO_SLIDES[currentSlide];
@@ -39,9 +54,9 @@ const Hero: React.FC = () => {
       {/* ================= BACKGROUND IMAGE ================= */}
       <div className="absolute inset-0 z-0">
         <AnimatePresence mode="wait">
-         <motion.img
-  key={`${currentSlide}-${slide.image}`}
-  src={slide.image}
+          <motion.img
+            key={`${currentSlide}-${slide.image}`}
+            src={slide.image}
             alt={slide.title}
             className="absolute inset-0 w-full h-full object-cover"
             initial={{ opacity: 0, scale: 1.08 }}
@@ -50,6 +65,18 @@ const Hero: React.FC = () => {
             transition={{
               duration: ANIMATION_DURATION,
               ease: "easeInOut",
+            }}
+
+            /* ===== SWIPE SUPPORT ===== */
+            drag="x"
+            dragConstraints={{ left: 0, right: 0 }}
+            dragElastic={0.15}
+            onDragEnd={(_, info) => {
+              if (info.offset.x < -100) {
+                handleNext(); // swipe left
+              } else if (info.offset.x > 100) {
+                handlePrev(); // swipe right
+              }
             }}
           />
         </AnimatePresence>
