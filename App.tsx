@@ -14,12 +14,14 @@ const App: React.FC = () => {
       <Navbar />
       <Hero />
       <About />
-      <Projects />
       <Services />
+      <OurClients />
+      <Projects />
       <Leadership />
       <Contact />
     </div>
   );
 };
+
 
 export default App;
