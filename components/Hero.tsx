@@ -39,9 +39,9 @@ const Hero: React.FC = () => {
       {/* ================= BACKGROUND IMAGE ================= */}
       <div className="absolute inset-0 z-0">
         <AnimatePresence mode="wait">
-          <motion.img
-            key={slide.image}
-            src={slide.image}
+         <motion.img
+  key={`${currentSlide}-${slide.image}`}
+  src={slide.image}
             alt={slide.title}
             className="absolute inset-0 w-full h-full object-cover"
             initial={{ opacity: 0, scale: 1.08 }}
