@@ -6,10 +6,12 @@ import { motion, AnimatePresence } from "framer-motion";
 /* ======================================================
    PROJECT CARD
 ====================================================== */
+
 const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
   const [activeImageIndex, setActiveImageIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
 
+  /* ---------- IMAGE DATA ---------- */
   const validImages =
     project.images?.filter(
       (img) => typeof img === "string" && img.trim().length > 0
@@ -23,34 +25,31 @@ const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
   const isLogoFallback =
     images[activeImageIndex] === COMPANY_IMAGES.projectPlaceholder;
 
-  const isDesktop =
-    typeof window !== "undefined" && window.innerWidth >= 768;
-
-  const handleNext = () =>
+  /* ---------- NAV HELPERS ---------- */
+  const nextImage = () =>
     setActiveImageIndex((prev) => (prev + 1) % images.length);
 
-  const handlePrev = () =>
+  const prevImage = () =>
     setActiveImageIndex((prev) =>
       prev === 0 ? images.length - 1 : prev - 1
     );
 
+  /* ---------- DESKTOP HOVER SLIDESHOW ---------- */
   useEffect(() => {
-    let interval: number | undefined;
+    if (!isHovered || images.length <= 1) return;
 
-    if (isHovered && images.length > 1 && isDesktop) {
-      interval = window.setInterval(handleNext, 4000);
-    }
-
-    return () => {
-      if (interval) clearInterval(interval);
-    };
-  }, [isHovered, images.length, isDesktop]);
+    const interval = window.setInterval(nextImage, 4000);
+    return () => clearInterval(interval);
+  }, [isHovered, images.length]);
 
   return (
     <motion.div
       className="relative group cursor-pointer h-full"
       onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      onMouseLeave={() => {
+        setIsHovered(false);
+        setActiveImageIndex(0); // reset after hover
+      }}
       whileHover={{
         scale: 1.04,
         zIndex: 20,
@@ -62,16 +61,18 @@ const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
       transition={{ duration: 0.4 }}
       layout
     >
+      {/* IMAGE CONTAINER (SWIPE ENABLED) */}
       <motion.div
-        className="relative aspect-video w-full overflow-hidden bg-black border border-white/10 group-hover:border-accent/50 transition-colors touch-pan-y"
+        className="relative aspect-video w-full overflow-hidden bg-black border border-white/10 group-hover:border-accent/50 transition-colors"
         drag={images.length > 1 ? "x" : false}
         dragConstraints={{ left: 0, right: 0 }}
         dragElastic={0.15}
         onDragEnd={(_, info) => {
-          if (info.offset.x < -80) handleNext();
-          if (info.offset.x > 80) handlePrev();
+          if (info.offset.x < -80) nextImage();
+          if (info.offset.x > 80) prevImage();
         }}
       >
+        {/* IMAGE */}
         <AnimatePresence mode="wait">
           <motion.img
             key={activeImageIndex}
@@ -96,16 +97,16 @@ const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
           />
         </AnimatePresence>
 
+        {/* GRADIENT OVERLAY */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent z-10 pointer-events-none" />
 
+        {/* TEXT */}
         <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6 z-20 pointer-events-none">
-          <div className="flex justify-between mb-2">
-            <span className="text-accent text-[10px] font-bold uppercase tracking-widest bg-black/60 px-2 py-1 rounded">
-              {project.client || "Project"}
-            </span>
-          </div>
+          <span className="inline-block text-accent text-[10px] font-bold uppercase tracking-widest bg-black/60 px-2 py-1 rounded">
+            {project.client || "Project"}
+          </span>
 
-          <h3 className="text-sm md:text-xl font-display font-bold text-white uppercase leading-snug line-clamp-3 md:line-clamp-none">
+          <h3 className="mt-2 text-sm md:text-xl font-display font-bold text-white uppercase leading-snug line-clamp-3 md:line-clamp-none">
             {project.name}
           </h3>
         </div>
