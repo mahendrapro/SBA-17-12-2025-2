@@ -21,6 +21,8 @@ const images =
     ? validImages
     : [COMPANY_IMAGES.projectPlaceholder];
 
+const isLogoFallback =
+  images[activeImageIndex] === COMPANY_IMAGES.projectPlaceholder;
 
   useEffect(() => {
     let interval: NodeJS.Timeout | undefined;
@@ -59,24 +61,28 @@ const images =
 
         {/* IMAGE SLIDES */}
         <AnimatePresence mode="wait">
-          <motion.img
-            key={activeImageIndex}
-            src={images[activeImageIndex]}
-            alt={project.name}
-className="absolute inset-0 w-full h-full object-contain bg-black p-6"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.8 }}
-          onError={(e) => {
-  const img = e.target as HTMLImageElement;
+       <motion.img
+  key={activeImageIndex}
+  src={images[activeImageIndex]}
+  alt={project.name}
+  className={`absolute inset-0 w-full h-full bg-black transition-all duration-300 ${
+    isLogoFallback
+      ? "object-contain p-16 max-w-[60%] max-h-[60%] mx-auto my-auto opacity-80"
+      : "object-cover"
+  }`}
+  initial={{ opacity: 0 }}
+  animate={{ opacity: 1 }}
+  exit={{ opacity: 0 }}
+  transition={{ duration: 0.8 }}
+  onError={(e) => {
+    const img = e.target as HTMLImageElement;
+    if (!img.dataset.fallback) {
+      img.dataset.fallback = "true";
+      img.src = COMPANY_IMAGES.projectPlaceholder;
+    }
+  }}
+/>
 
-  // Prevent infinite loop
-  if (!img.dataset.fallback) {
-    img.dataset.fallback = "true";
-    img.src = COMPANY_IMAGES.projectPlaceholder;
-  }
-}}
 
           />
         </AnimatePresence>
