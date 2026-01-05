@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { ArrowDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { HERO_SLIDES } from "../constants";
+import { HERO_SLIDES } from "../utils/heroSlides";
 
 /* ================= CONFIG ================= */
 const SLIDE_INTERVAL = 5000;
