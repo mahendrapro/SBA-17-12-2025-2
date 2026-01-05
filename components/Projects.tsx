@@ -36,7 +36,7 @@ const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
     );
   };
 
-  /* -------- DESKTOP HOVER SLIDESHOW -------- */
+  /* -------- DESKTOP HOVER AUTO SLIDESHOW -------- */
   useEffect(() => {
     let interval: number | undefined;
 
@@ -44,8 +44,6 @@ const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
       interval = window.setInterval(() => {
         setActiveImageIndex((prev) => (prev + 1) % images.length);
       }, 4000);
-    } else {
-      setActiveImageIndex(0);
     }
 
     return () => {
@@ -108,7 +106,7 @@ const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
         {/* GRADIENT OVERLAY (DO NOT BLOCK SWIPE) */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent z-10 pointer-events-none" />
 
-        {/* TEXT (MOBILE SAFE) */}
+        {/* TEXT OVERLAY (MOBILE SAFE) */}
         <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6 z-20 pointer-events-none">
           <div className="flex items-center justify-between mb-2">
             <span className="text-accent text-[10px] font-bold uppercase tracking-widest bg-black/60 px-2 py-1 rounded">
