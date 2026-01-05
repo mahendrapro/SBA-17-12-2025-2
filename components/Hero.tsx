@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from "react";
-import { ArrowLeft, ArrowRight, ArrowDown } from "lucide-react";
+import React, { useState, useEffect } from "react";
+import { ArrowDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { HERO_SLIDES } from "../constants";
 
@@ -10,50 +10,43 @@ const Hero: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
-  const intervalRef = useRef<number | null>(null);
 
-  // ---------------- Auto Slide ----------------
-  const startAutoSlide = () => {
-    stopAutoSlide();
-    intervalRef.current = window.setInterval(() => {
-      handleNext();
-    }, SLIDE_INTERVAL);
-  };
+  // ---------------- Logic ----------------
 
-  const stopAutoSlide = () => {
-    if (intervalRef.current) {
-      clearInterval(intervalRef.current);
-      intervalRef.current = null;
-    }
-  };
+  // Standard function to handle slide changes
+  const changeSlide = (index: number) => {
+    // Prevent clicking if already animating or clicking the active dot
+    if (isAnimating || index === currentSlide) return;
 
-  useEffect(() => {
-    if (!isPaused) startAutoSlide();
-    return () => stopAutoSlide();
-  }, [isPaused]);
-
-  // ---------------- Slide Controls ----------------
-  const lockAndChange = (index: number) => {
-    if (isAnimating) return;
     setIsAnimating(true);
     setCurrentSlide(index);
-    stopAutoSlide();
 
+    // Lock interaction until animation finishes
     setTimeout(() => {
       setIsAnimating(false);
-      if (!isPaused) startAutoSlide();
     }, ANIMATION_DURATION);
   };
 
   const handleNext = () => {
-    lockAndChange((currentSlide + 1) % HERO_SLIDES.length);
+    const nextIndex = (currentSlide + 1) % HERO_SLIDES.length;
+    changeSlide(nextIndex);
   };
 
-  const handlePrev = () => {
-    lockAndChange(
-      (currentSlide - 1 + HERO_SLIDES.length) % HERO_SLIDES.length
-    );
-  };
+  // ---------------- Automatic Slider Effect ----------------
+  useEffect(() => {
+    // 1. If paused (hovering) or animating, don't start a timer yet.
+    if (isPaused || isAnimating) return;
+
+    // 2. Start the timer.
+    const timer = setInterval(() => {
+      handleNext();
+    }, SLIDE_INTERVAL);
+
+    // 3. Cleanup. 
+    // This is the magic part: Whenever 'currentSlide' changes (via auto or dot click),
+    // this clears the OLD timer and the effect runs again to start a NEW timer.
+    return () => clearInterval(timer);
+  }, [isPaused, isAnimating, currentSlide]); 
 
   const slide = HERO_SLIDES[currentSlide];
 
@@ -61,14 +54,16 @@ const Hero: React.FC = () => {
     <section
       id="home"
       className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-black"
-      onMouseEnter={() => setIsPaused(true)}
+      // Pause on hover
+      onMouseEnter={() => setIsPaused(true)} 
+      // Resume on leave (will start a fresh timer)
       onMouseLeave={() => setIsPaused(false)}
     >
-      {/* Background */}
+      {/* Background Image with Animation */}
       <div className="absolute inset-0 z-0">
         <AnimatePresence mode="wait">
           <motion.img
-            key={slide.image}
+            key={slide.image} // Key change triggers the animation
             src={slide.image}
             alt={slide.title}
             className="absolute inset-0 w-full h-full object-cover"
@@ -79,11 +74,12 @@ const Hero: React.FC = () => {
           />
         </AnimatePresence>
 
+        {/* Overlays */}
         <div className="absolute inset-0 bg-black/50 z-10" />
         <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-transparent to-black z-10" />
       </div>
 
-      {/* Content */}
+      {/* Text Content */}
       <div className="relative z-20 text-center max-w-5xl px-6">
         <span className="inline-block mb-6 px-4 py-1 border border-white/20 rounded-full text-accent text-xs tracking-widest">
           EST. 2011 • ANDHRA PRADESH
@@ -98,34 +94,27 @@ const Hero: React.FC = () => {
         </p>
 
         <div className="flex justify-center gap-6">
-          <a
-            href="#projects"
-            className="px-8 py-4 bg-white text-black font-bold uppercase text-xs tracking-widest"
-          >
+          <a href="#projects" className="px-8 py-4 bg-white text-black font-bold uppercase text-xs tracking-widest">
             View Projects
           </a>
-          <a
-            href="#contact"
-            className="px-8 py-4 border border-white/30 text-white font-bold uppercase text-xs tracking-widest"
-          >
+          <a href="#contact" className="px-8 py-4 border border-white/30 text-white font-bold uppercase text-xs tracking-widest">
             Contact Us
           </a>
         </div>
       </div>
 
-  
-
-      {/* Dots */}
+      {/* Dots Navigation */}
       <div className="absolute bottom-28 left-1/2 -translate-x-1/2 z-30 flex gap-3">
         {HERO_SLIDES.map((_, index) => (
           <button
             key={index}
-            onClick={() => lockAndChange(index)}
-            className={`w-3 h-3 rounded-full transition ${
+            onClick={() => changeSlide(index)} // This manually changes slide & resets timer
+            className={`w-3 h-3 rounded-full transition-all duration-300 ${
               index === currentSlide
-                ? "bg-white"
+                ? "bg-white scale-125"
                 : "bg-white/40 hover:bg-white/70"
             }`}
+            aria-label={`Go to slide ${index + 1}`}
           />
         ))}
       </div>
