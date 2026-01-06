@@ -24,16 +24,13 @@ const Hero: React.FC = () => {
     return () => clearInterval(timer);
   }, [pauseOnDots, slideTick]);
 
-  /* -------- HELPERS -------- */
   const next = () => {
     setCurrentSlide((p) => (p + 1) % HERO_SLIDES.length);
     setSlideTick((t) => t + 1);
   };
 
   const prev = () => {
-    setCurrentSlide((p) =>
-      p === 0 ? HERO_SLIDES.length - 1 : p - 1
-    );
+    setCurrentSlide((p) => (p === 0 ? HERO_SLIDES.length - 1 : p - 1));
     setSlideTick((t) => t + 1);
   };
 
@@ -42,22 +39,24 @@ const Hero: React.FC = () => {
   return (
     <section
       id="home"
-      className="relative w-full h-[92svh] md:h-screen overflow-hidden bg-black"
+      className="relative w-full h-[100svh] overflow-hidden bg-black"
     >
-      {/* ================= IMAGE LAYER ================= */}
+      {/* ================= IMAGE ================= */}
       <div className="absolute inset-0 z-0">
         <AnimatePresence mode="wait">
           <motion.img
             key={slide.image}
             src={slide.image}
             alt={slide.title}
-            className="absolute inset-0 w-full h-full object-cover bg-black"
+            className="
+              absolute inset-0 w-full h-full
+              object-cover
+              bg-black
+            "
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: ANIMATION_DURATION }}
-
-            /* ===== SWIPE ===== */
             drag="x"
             dragConstraints={{ left: 0, right: 0 }}
             dragElastic={0.12}
@@ -74,41 +73,38 @@ const Hero: React.FC = () => {
       </div>
 
       {/* ================= CONTENT ================= */}
-      <div className="relative z-20 flex h-full items-center justify-center px-6 pt-20 md:pt-0">
+      <div className="relative z-20 flex h-full items-center justify-center px-5">
         <div className="text-center max-w-5xl">
-          <span className="inline-block mb-6 px-4 py-1 border border-white/20 rounded-full text-accent text-xs tracking-widest">
+
+          <span className="inline-block mb-4 px-4 py-1 border border-white/20 rounded-full text-accent text-xs tracking-widest">
             EST. 2011 • ANDHRA PRADESH
           </span>
 
-          <h1 className="text-4xl md:text-7xl font-display font-bold text-white uppercase mb-6">
+          <h1 className="
+            font-display font-bold uppercase text-white mb-4
+            [font-size:clamp(1.75rem,6vw,4.5rem)]
+          ">
             {slide.title}
           </h1>
 
-          <p className="text-slate-300 max-w-2xl mx-auto mb-8 text-sm md:text-base">
+          <p className="
+            text-slate-300
+            max-w-2xl mx-auto mb-8
+            [font-size:clamp(0.9rem,3vw,1.05rem)]
+          ">
             {slide.subtitle}
           </p>
 
-          {/* ===== Managing Director Attribution ===== */}
-          <div className="mb-10">
-            <p className="text-white font-semibold">
-              — Mr. C. Krishna Kumar
-            </p>
-            <p className="text-slate-400 text-xs tracking-widest uppercase mt-1">
-              Founder & Managing Director
-            </p>
-          </div>
-
-          {/* CTA BUTTONS */}
-          <div className="flex justify-center gap-4 md:gap-6">
+          <div className="flex justify-center gap-4">
             <a
               href="#projects"
-              className="px-6 md:px-8 py-4 bg-white text-black font-bold uppercase text-xs tracking-widest"
+              className="px-6 py-3 bg-white text-black font-bold uppercase text-xs tracking-widest"
             >
               View Projects
             </a>
             <a
               href="#contact"
-              className="px-6 md:px-8 py-4 border border-white/30 text-white font-bold uppercase text-xs tracking-widest"
+              className="px-6 py-3 border border-white/30 text-white font-bold uppercase text-xs tracking-widest"
             >
               Contact Us
             </a>
@@ -118,7 +114,7 @@ const Hero: React.FC = () => {
 
       {/* ================= DOTS ================= */}
       <div
-        className="absolute bottom-24 left-1/2 -translate-x-1/2 z-30 flex gap-3"
+        className="absolute bottom-20 left-1/2 -translate-x-1/2 z-30 flex gap-3"
         onMouseEnter={() => setPauseOnDots(true)}
         onMouseLeave={() => setPauseOnDots(false)}
       >
@@ -138,7 +134,7 @@ const Hero: React.FC = () => {
         ))}
       </div>
 
-      {/* ================= SCROLL INDICATOR ================= */}
+      {/* ================= SCROLL ================= */}
       <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-white/50 animate-bounce z-20">
         <ArrowDown size={22} />
       </div>
