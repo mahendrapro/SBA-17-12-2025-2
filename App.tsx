@@ -5,7 +5,6 @@ import About from './components/About';
 import Services from './components/Services';
 import OurClients from "./components/OurClients";
 import Projects from './components/Projects';
-import Leadership from './components/Leadership';
 import Contact from './components/Contact';
 
 const App: React.FC = () => {
@@ -17,7 +16,6 @@ const App: React.FC = () => {
       <Services />
       <OurClients />
       <Projects />
-      <Leadership />
       <Contact />
     </div>
   );
