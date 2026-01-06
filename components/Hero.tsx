@@ -31,7 +31,9 @@ const Hero: React.FC = () => {
   };
 
   const prev = () => {
-    setCurrentSlide((p) => (p === 0 ? HERO_SLIDES.length - 1 : p - 1));
+    setCurrentSlide((p) =>
+      p === 0 ? HERO_SLIDES.length - 1 : p - 1
+    );
     setSlideTick((t) => t + 1);
   };
 
@@ -40,7 +42,7 @@ const Hero: React.FC = () => {
   return (
     <section
       id="home"
-      className="relative w-full h-[100svh] md:h-screen overflow-hidden bg-black"
+      className="relative w-full h-[92svh] md:h-screen overflow-hidden bg-black"
     >
       {/* ================= IMAGE LAYER ================= */}
       <div className="absolute inset-0 z-0">
@@ -49,11 +51,7 @@ const Hero: React.FC = () => {
             key={slide.image}
             src={slide.image}
             alt={slide.title}
-            className="
-              absolute inset-0 w-full h-full
-              object-contain md:object-cover
-              bg-black
-            "
+            className="absolute inset-0 w-full h-full object-cover bg-black"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -76,20 +74,31 @@ const Hero: React.FC = () => {
       </div>
 
       {/* ================= CONTENT ================= */}
-      <div className="relative z-20 flex h-full items-center justify-center px-6">
+      <div className="relative z-20 flex h-full items-center justify-center px-6 pt-20 md:pt-0">
         <div className="text-center max-w-5xl">
           <span className="inline-block mb-6 px-4 py-1 border border-white/20 rounded-full text-accent text-xs tracking-widest">
             EST. 2011 • ANDHRA PRADESH
           </span>
 
-          <h1 className="text-3xl md:text-7xl font-display font-bold text-white uppercase mb-6">
+          <h1 className="text-4xl md:text-7xl font-display font-bold text-white uppercase mb-6">
             {slide.title}
           </h1>
 
-          <p className="text-slate-300 max-w-2xl mx-auto mb-10 text-sm md:text-base">
+          <p className="text-slate-300 max-w-2xl mx-auto mb-8 text-sm md:text-base">
             {slide.subtitle}
           </p>
 
+          {/* ===== Managing Director Attribution ===== */}
+          <div className="mb-10">
+            <p className="text-white font-semibold">
+              — Mr. C. Krishna Kumar
+            </p>
+            <p className="text-slate-400 text-xs tracking-widest uppercase mt-1">
+              Founder & Managing Director
+            </p>
+          </div>
+
+          {/* CTA BUTTONS */}
           <div className="flex justify-center gap-4 md:gap-6">
             <a
               href="#projects"
