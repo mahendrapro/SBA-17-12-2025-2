@@ -1,11 +1,10 @@
-import React from 'react';
-import { COMPANY_DETAILS } from '../constants';
+import React from 'react'
+import { COMPANY_DETAILS } from '../constants'
 
 const Contact: React.FC = () => {
 return ( <footer id="contact" className="bg-black py-32 border-t border-white/10"> <div className="max-w-7xl mx-auto px-6 lg:px-12"> <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
 
 ```
-      {/* LEFT SIDE */}
       <div>
         <span className="text-accent font-bold tracking-[0.2em] uppercase text-xs block mb-6">
           Contact Us
@@ -16,10 +15,9 @@ return ( <footer id="contact" className="bg-black py-32 border-t border-white/10
         </h2>
 
         <div className="mt-6 space-y-6 text-slate-400">
-          
           <div>
             <p className="text-xs text-slate-500 uppercase tracking-widest mb-1">
-              For General Enquiries
+              General Enquiries
             </p>
             <a href="mailto:contact@sbainfra.com" className="hover:text-white transition-colors">
               contact@sbainfra.com
@@ -28,7 +26,7 @@ return ( <footer id="contact" className="bg-black py-32 border-t border-white/10
 
           <div>
             <p className="text-xs text-slate-500 uppercase tracking-widest mb-1">
-              For Sales
+              Sales Enquiries
             </p>
             <a href="mailto:sales@sbainfra.com" className="hover:text-white transition-colors">
               sales@sbainfra.com
@@ -37,19 +35,16 @@ return ( <footer id="contact" className="bg-black py-32 border-t border-white/10
 
           <div>
             <p className="text-xs text-slate-500 uppercase tracking-widest mb-1">
-              To Connect with Our Managing Director
+              Managing Director
             </p>
             <a href="mailto:md@sbainfra.com" className="hover:text-white transition-colors">
               md@sbainfra.com
             </a>
           </div>
-
         </div>
       </div>
 
-      {/* RIGHT SIDE */}
       <div className="flex flex-col justify-end">
-        
         <div className="mb-8">
           <h4 className="text-white font-bold uppercase tracking-widest text-xs mb-4">
             Headquarters
@@ -79,11 +74,10 @@ return ( <footer id="contact" className="bg-black py-32 border-t border-white/10
           </h4>
           <p className="text-slate-400">{COMPANY_DETAILS.phone}</p>
         </div>
-
       </div>
+
     </div>
 
-    {/* FOOTER */}
     <div className="mt-24 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center text-slate-600 text-[10px] uppercase tracking-widest">
       <p>
         &copy; {new Date().getFullYear()} {COMPANY_DETAILS.name}. All Rights Reserved.
@@ -93,11 +87,12 @@ return ( <footer id="contact" className="bg-black py-32 border-t border-white/10
         <span>Terms of Service</span>
       </div>
     </div>
+
   </div>
 </footer>
 ```
 
-);
-};
+)
+}
 
-export default Contact;
+export default Contact
