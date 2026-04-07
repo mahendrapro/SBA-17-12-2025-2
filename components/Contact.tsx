@@ -14,27 +14,36 @@ const Contact: React.FC = () => {
             </h2>
            <div className="mt-6 space-y-4 text-slate-400">
   
+ <div className="mt-6 space-y-4 text-slate-400">
+  
   <div>
-    <p className="text-xs text-slate-500 uppercase tracking-widest mb-1">For General Enquiries</p>
+    <p className="text-xs text-slate-500 uppercase tracking-widest mb-1">
+      For General Enquiries
+    </p>
     <a href="mailto:contact@sbainfra.com" className="hover:text-white transition-colors">
       contact@sbainfra.com
     </a>
   </div>
 
   <div>
-    <p className="text-xs text-slate-500 uppercase tracking-widest mb-1">For Sales</p>
+    <p className="text-xs text-slate-500 uppercase tracking-widest mb-1">
+      For Sales
+    </p>
     <a href="mailto:sales@sbainfra.com" className="hover:text-white transition-colors">
       sales@sbainfra.com
     </a>
   </div>
 
   <div>
-    <p className="text-xs text-slate-500 uppercase tracking-widest mb-1" To Connect with Our Managing Director</p>
+    <p className="text-xs text-slate-500 uppercase tracking-widest mb-1">
+      To Connect with Our Managing Director
+    </p>
     <a href="mailto:md@sbainfra.com" className="hover:text-white transition-colors">
       md@sbainfra.com
     </a>
   </div>
 
+</div>
 </div>
           </div>
 
