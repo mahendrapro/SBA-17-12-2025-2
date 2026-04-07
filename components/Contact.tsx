@@ -10,11 +10,12 @@ return ( <footer id="contact" className="bg-black py-32 border-t border-white/10
           Contact Us
         </span>
 
+        {/* ✅ FIXED HEADING (no string error) */}
         <h2 className="text-4xl md:text-5xl font-display font-bold text-white uppercase leading-tight mb-8">
-          Let's Build <br /> Something Great
+          Let&apos;s Build <br /> Something Great
         </h2>
 
-        {/* ✅ Updated Email Section */}
+        {/* ✅ Email Section */}
         <div className="mt-6 space-y-6 text-slate-400">
           
           <div>
@@ -77,6 +78,7 @@ return ( <footer id="contact" className="bg-black py-32 border-t border-white/10
       </div>
     </div>
 
+    {/* Footer Bottom */}
     <div className="mt-24 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center text-slate-600 text-[10px] uppercase tracking-widest">
       <p>
         &copy; {new Date().getFullYear()} {COMPANY_DETAILS.name}. All Rights Reserved.
