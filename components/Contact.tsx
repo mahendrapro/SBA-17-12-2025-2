@@ -47,14 +47,28 @@ const Contact: React.FC = () => {
 </div>
           </div>
 
-          <div className="flex flex-col justify-end">
-             <div className="mb-8">
-                <h4 className="text-white font-bold uppercase tracking-widest text-xs mb-4">Headquarters</h4>
-                <address className="not-italic text-slate-400 leading-relaxed font-light">
-                   {COMPANY_DETAILS.address}<br />
-                   Satya Sai District, Andhra Pradesh
-                </address>
-             </div>
+         <div className="mb-8">
+  <h4 className="text-white font-bold uppercase tracking-widest text-xs mb-4">
+    Headquarters
+  </h4>
+  <address className="not-italic text-slate-400 leading-relaxed font-light">
+    {COMPANY_DETAILS.address}
+    <br />
+    Satya Sai District, Andhra Pradesh
+  </address>
+</div>
+
+<div className="mb-8">
+  <h4 className="text-white font-bold uppercase tracking-widest text-xs mb-4">
+    Branch Office
+  </h4>
+  <address className="not-italic text-slate-400 leading-relaxed font-light">
+    #203, Above Canara Bank <br />
+    Mahima Sai Pradhan <br />
+    Maruthi Nagar, Kogilu Main Road <br />
+    Yelahanka, Bangalore – 560064
+  </address>
+</div>
              <div>
                 <h4 className="text-white font-bold uppercase tracking-widest text-xs mb-4">Phone</h4>
                 <p className="text-slate-400">{COMPANY_DETAILS.phone}</p>
